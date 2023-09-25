@@ -41,7 +41,7 @@ export default function Home({ count }: { count: number }) {
           variants={FADE_DOWN_ANIMATION_VARIANTS}
         >
           <Balancer ratio={0.6}>
-            Upload your photo, view the result below and discover a special product for your skin.{" "}
+            Upload your photo, View the result below and discover a special product for your skin.{" "}
             {/*
             <Tooltip
               content={
@@ -72,9 +72,9 @@ export default function Home({ count }: { count: number }) {
           </p>
         </motion.div>
         <PhotoBooth
-          input="https://myskin.madeofhealth.com/input.webp"
+          input={`${process.env.NEXT_PUBLIC_CLOUDFLARE_WORKER}/input.webp`}
           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAIAAAA7ljmRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAMklEQVR4nAEnANj/ALjj/4mIh+P+/9Lv/wCn0+xeLxV9cWWUtL0AUz0tKQAAeVU0j4d/y2cTsDiuaawAAAAASUVORK5CYII="
-          output="https://myskin.madeofhealth.com/output.gif"
+          output={`${process.env.NEXT_PUBLIC_CLOUDFLARE_WORKER}/output.gif`}
         />
       </motion.div>
     </Layout>

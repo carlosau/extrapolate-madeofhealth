@@ -86,7 +86,7 @@ export default function Layout({
         <p className="text-gray-500">
           © {new Date().getFullYear()}{" "}
           <a
-            href="https://saudetube.com.br"
+            href="https://madeofhealth.com"
             target="_blank"
             rel="noopener noreferrer"
           >
