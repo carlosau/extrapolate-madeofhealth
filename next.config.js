@@ -9,17 +9,17 @@ const nextConfig = {
     return [
       {
         source: "/launch",
-        destination: "",
+        destination: "/",
         permanent: false,
       },
       {
         source: "/github",
-        destination: "",
+        destination: "/",
         permanent: false,
       },
       {
         source: "/deploy",
-        destination: "",
+        destination: "/",
         permanent: false,
       },
       {
