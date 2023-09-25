@@ -65,7 +65,7 @@ export default function PhotoPage({
           className="bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent drop-shadow-sm md:text-7xl md:leading-[5rem]"
           variants={FADE_DOWN_ANIMATION_VARIANTS}
         >
-          Resultado
+          Result
         </motion.h1>
         <motion.p
           className="mt-0 text-center text-gray-500 md:text-xl"
@@ -86,22 +86,23 @@ export default function PhotoPage({
                               <p
                                   className="text-sm text-gray-500 pt-3"
                                 >
-                                  Analisando sua pele...
+                                  Analyzing your skin...
                                 </p>
                           </div>
                           <div>
-                                <p>Temos o produto recomendado para sua pele!</p>
+                                <p>Good News!</p>
+                                <p>We found the recommended product for your skin!</p>
                                 <button
                                   className="group mx-auto mt-6 flex max-w-fit items-center justify-center space-x-2 rounded-full border border-black bg-green-600 px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black"
                                 >
-                                  <Link href="https://saudetube.com.br">Conheça o produto</Link>
+                                  <Link href="https://madeofhealth.com/product/link">Discover the product</Link>
                                 </button>
                           </div>
                     </div>
                   )}
 
           <Balancer ratio={0.6} className="invisible">
-            Enquanto sua foto é gerada, assista um dos nossos vídeos.
+          text
           </Balancer>
         </motion.p>
         {data?.expired ? (
@@ -110,14 +111,14 @@ export default function PhotoPage({
             variants={FADE_DOWN_ANIMATION_VARIANTS}
           >
             <p className="text-sm text-gray-500">
-              Sua foto foi deletada. Por favor, adicione outra foto.
+            Your photo has been deleted. Please add another photo.
             </p>
             <button
               className="group mx-auto mt-6 flex max-w-fit items-center justify-center space-x-2 rounded-full border border-black bg-black px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black"
               onClick={() => setShowUploadModal(true)}
             >
               <Upload className="h-5 w-5 text-white group-hover:text-black" />
-              <p>Adicionar outra foto</p>
+              <p>Upload new photo</p>
             </button>
           </motion.div>
         ) : (
