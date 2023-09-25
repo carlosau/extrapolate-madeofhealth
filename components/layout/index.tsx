@@ -34,7 +34,7 @@ export default function Layout({
           <Link href="/" className="flex items-center font-display text-2xl">
             <Image
               src="/madeofhealth-logo.png"
-              alt="saudetube.com.br logo"
+              alt="madeofhealth-logo"
               width="169"
               height="44"
               className="mr-2 rounded-sm p-3"

@@ -32,8 +32,8 @@ export default async function handler(req: NextRequest) {
         }}
       >
         <img
-          src={new URL("../../public/madeofhealth-logo-only", import.meta.url).toString()}
-          alt="Saudetube.com.br"
+          src={new URL("../../public/madeofhealth-logo-only.png", import.meta.url).toString()}
+          alt="madeofhealth.com"
           tw="w-20 h-20 mb-4 opacity-95"
         />
         <h1
