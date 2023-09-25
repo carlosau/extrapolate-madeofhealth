@@ -14,7 +14,7 @@ export default async function handler(req: NextRequest) {
   const [clashData] = await Promise.all([clash]);
 
   const { searchParams } = req.nextUrl;
-  const title = searchParams.get("title") || "Saudetube.com.br";
+  const title = searchParams.get("title") || "madeofhealth.com";
 
   return new ImageResponse(
     (
@@ -32,7 +32,7 @@ export default async function handler(req: NextRequest) {
         }}
       >
         <img
-          src={new URL("../../public/saudetube-logo-maca-mid.png", import.meta.url).toString()}
+          src={new URL("../../public/madeofhealth-logo-only", import.meta.url).toString()}
           alt="Saudetube.com.br"
           tw="w-20 h-20 mb-4 opacity-95"
         />
