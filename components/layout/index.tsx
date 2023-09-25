@@ -58,8 +58,8 @@ export default function Layout({
               content={
                 <div className="items-center justify-center align-center text-center p-3">
                   <WhatsappShareButton
-                    url="https://minhapele.saudetube.com.br"
-                    title="Olha que legal! Simule sua aparência no futuro!"
+                    url="https://myskin.madeofhealth.com"
+                    title="Look how nice it is! Simulate your future appearance!"
                     separator=": "
                   >
                     <WhatsappIcon size={36} round />
