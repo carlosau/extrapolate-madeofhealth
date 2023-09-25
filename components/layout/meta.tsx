@@ -23,7 +23,7 @@ export default function Meta({
       <meta property="og:logo" content={`${DOMAIN}/madeofhealth-logo.png`}></meta>
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content="https://myskin.madeofhealth.com/thumbnail-wp-saudetube-minhapele.png" />
+      <meta property="og:image" content="https://myskin.madeofhealth.com/thumbnail-wp-madeofhealth-myskin.png" />
     </Head>
   );
 }
