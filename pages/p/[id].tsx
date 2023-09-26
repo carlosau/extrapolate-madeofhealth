@@ -102,7 +102,7 @@ export default function PhotoPage({
                   )}
 
           <Balancer ratio={0.6} className="invisible">
-          text
+          text text text text text text text text text text text text text
           </Balancer>
         </motion.p>
         {data?.expired ? (
