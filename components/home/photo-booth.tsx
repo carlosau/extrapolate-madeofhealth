@@ -36,23 +36,29 @@ function forceDownload(blobUrl: string, filename: string) {
 }
 
 export default function PhotoBooth({
-  input,
+  input = "",
   blurDataURL,
   output,
   failed,
+  state, // Receive state as a prop
+  setState = () => {}, // Receive setState as a prop
+  loading, // Receive loading as a prop
+  setLoading = () => {}, // Receive setLoading as a prop
 }: {
-  input: string;
-  blurDataURL: string;
-  output: string | null;
+  input?: string;
+  blurDataURL?: string;
+  output?: string | null;
   failed?: boolean;
+  state?: string; // Add state as a prop
+  setState?: (state: string) => void; // Add setState as a prop
+  loading?: boolean; // Add loading as a prop
+  setLoading?: (loading: boolean) => void; // Add setLoading as a prop
 }) {
   const router = useRouter();
   const { id } = router.query;
 
-  const [state, setState] = useState("output");
   const direction = useMemo(() => (state === "output" ? 1 : -1), [state]);
   const [downloading, setDownloading] = useState(false);
-  const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {

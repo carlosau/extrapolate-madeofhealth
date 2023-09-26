@@ -21,10 +21,18 @@ export default function PhotoPage({
   input,
   blurDataURL,
   data: fallbackData,
+  state, // Receive state as a prop
+  setState = () => {}, // Receive setState as a prop
+  loading, // Receive loading as a prop
+  setLoading = () => {}, // Receive setLoading as a prop
 }: {
-  input: string;
-  blurDataURL: string;
+  input?: string;
+  blurDataURL?: string;
   data: DataProps;
+  state?: string; // Add state as a prop
+  setState?: (state: string) => void; // Add setState as a prop
+  loading?: boolean; // Add loading as a prop
+  setLoading?: (loading: boolean) => void; // Add setLoading as a prop
 }) {
   const router = useRouter();
   const { id } = router.query;
