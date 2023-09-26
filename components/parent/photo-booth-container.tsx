@@ -9,9 +9,9 @@ export default function PhotoBoothContainer() {
     const [loading, setLoading] = useState(true)
 
      // Simulate fetching data
-     const data = {   input: 'image-url-for-input',
-     blurDataURL: 'blur-data-url',
-     output: 'image-url-for-output',};
+     const data = {  
+    output: ""
+    };
 
     return (
         <>

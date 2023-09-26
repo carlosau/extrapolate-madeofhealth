@@ -21,9 +21,9 @@ export default function PhotoPage({
   input,
   blurDataURL,
   data: fallbackData,
-  state, // Receive state as a prop
+  state = "output", // Receive state as a prop
   setState = () => {}, // Receive setState as a prop
-  loading, // Receive loading as a prop
+  loading = true, // Receive loading as a prop
   setLoading = () => {}, // Receive setLoading as a prop
 }: {
   input?: string;
@@ -36,6 +36,8 @@ export default function PhotoPage({
 }) {
   const router = useRouter();
   const { id } = router.query;
+
+  //old place to const { data } = useSWR...
 
   const { data } = useSWR<DataProps>(`/api/images/${id}`, fetcher, {
     fallbackData,
