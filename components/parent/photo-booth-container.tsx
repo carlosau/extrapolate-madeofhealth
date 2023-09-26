@@ -1,19 +1,25 @@
 import React, { useState } from 'react';
 import PhotoBooth from '../home/photo-booth';
-import Idpage from '../../pages/p/[id]'
+import PhotoPage from '../../pages/p/[id]';
+
 
 export default function PhotoBoothContainer() {
     //shared states
     const [state, setState] = useState('output')
     const [loading, setLoading] = useState(true)
 
+     // Simulate fetching data
+     const data = {   input: 'image-url-for-input',
+     blurDataURL: 'blur-data-url',
+     output: 'image-url-for-output',};
+
     return (
         <>
             {/* Pass the shared states as props to the PhotoBooth component */}
             <PhotoBooth state={state} setState={setState} loading={loading} setLoading={setLoading}  />
-            
-            {/* Pass the shared states as props to the IdPage component */}
-            <Idpage state={state} setState={setState} loading={loading} setLoading={setLoading} />
+        
+         {/* Pass the shared states as props to the PhotoPage component */}
+         <PhotoPage state={state} setState={setState} loading={loading} setLoading={setLoading} data={data} />
         </>
     )
 } 
