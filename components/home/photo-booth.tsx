@@ -50,9 +50,9 @@ export default function PhotoBooth({
   output?: string | null;
   failed?: boolean;
   state?: string; // Add state as a prop
-  setState?: (state: string) => void; // Add setState as a prop
+  setState?: (value: string) => void; // Add setState as a prop
   loading?: boolean; // Add loading as a prop
-  setLoading?: (loading: boolean) => void; // Add setLoading as a prop
+  setLoading?: (value: boolean) => void; // Add setLoading as a prop
 }) {
   const router = useRouter();
   const { id } = router.query;

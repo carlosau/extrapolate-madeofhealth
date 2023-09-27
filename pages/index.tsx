@@ -8,6 +8,9 @@ import PhotoBooth from "@/components/home/photo-booth";
 import { redis } from "@/lib/upstash";
 import Tooltip from "@/components/shared/tooltip";
 import { nFormatter } from "@/lib/utils";
+import ChildComponent from "@/components/home/ChildComponent";
+import ParentComponent from "@/components/parent/ParentComponent";
+import PhotoBoothContainer from "@/components/parent/photo-booth-container";
 
 export default function Home({ count }: { count: number }) {
   const { UploadModal, setShowUploadModal } = useUploadModal();
@@ -67,15 +70,23 @@ export default function Home({ count }: { count: number }) {
             <Upload className="h-5 w-5 text-white group-hover:text-black" />
             <p>Upload my photo</p>
           </button>
+          <ParentComponent />
           <p className="collapse mt-6 text-center text-sm text-gray-500">
             {nFormatter(count)} fotos geradas e contando...
           </p>
         </motion.div>
+        <PhotoBoothContainer 
+          input={`${process.env.NEXT_PUBLIC_CLOUDFLARE_WORKER}/input.webp`} 
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAIAAAA7ljmRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAMklEQVR4nAEnANj/ALjj/4mIh+P+/9Lv/wCn0+xeLxV9cWWUtL0AUz0tKQAAeVU0j4d/y2cTsDiuaawAAAAASUVORK5CYII="
+          output={`${process.env.NEXT_PUBLIC_CLOUDFLARE_WORKER}/output.gif`}
+        />
+        {/*Old way
         <PhotoBooth
           input={`${process.env.NEXT_PUBLIC_CLOUDFLARE_WORKER}/input.webp`}
           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAIAAAA7ljmRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAMklEQVR4nAEnANj/ALjj/4mIh+P+/9Lv/wCn0+xeLxV9cWWUtL0AUz0tKQAAeVU0j4d/y2cTsDiuaawAAAAASUVORK5CYII="
           output={`${process.env.NEXT_PUBLIC_CLOUDFLARE_WORKER}/output.gif`}
         />
+        */}
       </motion.div>
     </Layout>
   );
