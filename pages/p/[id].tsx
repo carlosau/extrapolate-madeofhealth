@@ -23,7 +23,7 @@ export default function PhotoPage({
   blurDataURL,
   data,
   failed,
-  state = "output", // Receive state as a prop
+  state = "", // Receive state as a prop
   setState = () => {}, // Receive setState as a prop
   loading = true, // Receive loading as a prop
   setLoading = () => {}, // Receive setLoading as a prop
