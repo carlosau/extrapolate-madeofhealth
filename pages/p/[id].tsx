@@ -16,11 +16,13 @@ import { Toaster } from "react-hot-toast";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { LoadingCircle } from "../../components/shared/icons";
+import PhotoBoothContainer from "@/components/parent/photo-booth-container";
 
 export default function PhotoPage({
-  input,
+  input = "",
   blurDataURL,
-  data: fallbackData,
+  data,
+  failed,
   state = "output", // Receive state as a prop
   setState = () => {}, // Receive setState as a prop
   loading = true, // Receive loading as a prop
@@ -28,7 +30,8 @@ export default function PhotoPage({
 }: {
   input?: string;
   blurDataURL?: string;
-  data: DataProps;
+  data: DataProps | undefined;
+  failed: boolean,
   state?: string; // Add state as a prop
   setState?: (state: string) => void; // Add setState as a prop
   loading?: boolean; // Add loading as a prop
@@ -37,13 +40,14 @@ export default function PhotoPage({
   const router = useRouter();
   const { id } = router.query;
 
-  //old place to const { data } = useSWR...
+  {/*old place to const { data } = useSWR...
 
   const { data } = useSWR<DataProps>(`/api/images/${id}`, fetcher, {
     fallbackData,
-    refreshInterval: fallbackData.output || fallbackData.expired ? 0 : 500,
+    refreshInterval: (fallbackData && fallbackData.output) || (fallbackData && fallbackData.expired) ? 0 : 500,
     refreshWhenHidden: true,
   });
+*/}
   const { UploadModal, setShowUploadModal } = useUploadModal();
 
    // State to control the visibility of the product result recommendation
@@ -132,12 +136,13 @@ export default function PhotoPage({
             </button>
           </motion.div>
         ) : (
-          <PhotoBooth
-            input={input}
-            blurDataURL={blurDataURL}
-            output={data!.output}
-            failed={data!.failed}
+          data && data.output && !data.failed && (
+          <PhotoBoothContainer
+          input={input}
+          blurDataURL={blurDataURL}
+          output={data.output}
           />
+        )
         )}
       </motion.div>
     </Layout>
