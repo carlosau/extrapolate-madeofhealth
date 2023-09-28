@@ -31,30 +31,54 @@ export default function PhotoPage({
   input?: string;
   blurDataURL?: string;
   data: DataProps | undefined;
-  failed: boolean,
+  failed: boolean;
   state?: string; // Add state as a prop
   setState?: (state: string) => void; // Add setState as a prop
   loading?: boolean; // Add loading as a prop
   setLoading?: (loading: boolean) => void; // Add setLoading as a prop
 }) {
   const router = useRouter();
-  const { id } = router.query;
+ 
+  const [showFirstText, setShowFirstText] = useState(true);
+  const [showSecondText, setShowSecondText] = useState(false);
 
-  {/*old place to const { data } = useSWR...
+  useEffect(() => {
+    let startTime = 0;
+
+    if (loading) {
+      startTime = performance.now();
+
+      // Display the first text for 2/3 of the actual loading time
+      const firstTextTimeout = setTimeout(() => {
+        setShowFirstText(false);
+        setShowSecondText(true);
+      }, (2 / 3) * (performance.now() - startTime)); // Calculate the duration dynamically
+
+      // Clear the first text timeout when loading is done
+      return () => clearTimeout(firstTextTimeout);
+    }
+  }, [loading]);
+
+  {
+    /*old place to const { data } = useSWR...
 
   const { data } = useSWR<DataProps>(`/api/images/${id}`, fetcher, {
     fallbackData,
     refreshInterval: (fallbackData && fallbackData.output) || (fallbackData && fallbackData.expired) ? 0 : 500,
     refreshWhenHidden: true,
   });
-*/}
+*/
+  }
   const { UploadModal, setShowUploadModal } = useUploadModal();
 
-   // State to control the visibility of the product result recommendation
-   const [showProductResult, setShowProductResult] = useState(false);
+  // State to control the visibility of the product result recommendation
+  const [showProductResult, setShowProductResult] = useState(false);
 
-
-
+  useEffect(() => {
+    if (!loading) {
+      setShowProductResult(true);
+    }
+  }, [loading]);
 
   return (
     <Layout>
@@ -85,38 +109,46 @@ export default function PhotoPage({
           className="mt-0 text-center text-gray-500 md:text-xl"
           variants={FADE_DOWN_ANIMATION_VARIANTS}
         >
-
-                         {/* CONDITIONS TO SHOW THE PRODUCT RESULT:
+          {/* CONDITIONS TO SHOW THE PRODUCT RESULT:
                          - show after 27seconds
                      AND only show the product result if:
                         - it's the first image generation from the user
                         - 
                     */}
-                  {showProductResult && (
-                  // The result product (Showed above the photo-booth) 
-                    <div className="absolute top-0 flex flex-col items-center p-2">
-                          <div>
-                              <LoadingCircle />
-                              <p
-                                  className="text-sm text-gray-500 pt-3"
-                                >
-                                  Analyzing your skin...
-                                </p>
-                          </div>
-                          <div>
-                                <p>Good News!</p>
-                                <p>We found the recommended product for your skin!</p>
-                                <button
-                                  className="group mx-auto mt-6 flex max-w-fit items-center justify-center space-x-2 rounded-full border border-black bg-green-600 px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black"
-                                >
-                                  <Link href="https://madeofhealth.com/product/link">Discover the product</Link>
-                                </button>
-                          </div>
-                    </div>
-                  )}
+          {loading && (
+            <div className="mt-4 p-2">
+              <div className="text-center flex flex-col items-center justify-center">
+                <LoadingCircle />
+                {showFirstText && (
+                <p className="pt-3 text-sm text-gray-500">
+                  Analyzing your skin...
+                </p>
+                )}
+                {showSecondText && (
+                <p className="pt-3 text-sm text-gray-500">
+                  Choosing the best product for your skin...
+                </p>
+                )}
+              </div>
+            </div>
+          )}
+          {showProductResult && (
+            // The result product (Showed above the photo-booth)
+            <div className="mt-4 p-2">
+              <div className="text-center flex flex-col items-center justify-center">
+                <p>Good News!</p>
+                <p>We found the recommended product for your skin!</p>
+                <button className="group mx-auto mt-6 flex max-w-fit items-center justify-center space-x-2 rounded-full border border-black bg-green-600 px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black">
+                  <Link href="https://madeofhealth.com/product/link">
+                    Discover the product
+                  </Link>
+                </button>
+              </div>
+            </div>
+          )}
 
           <Balancer ratio={0.6} className="invisible">
-          text text text text text text text text text text text text text
+            text text text text text text text text text text text text text
           </Balancer>
         </motion.p>
         {data?.expired ? (
@@ -125,7 +157,7 @@ export default function PhotoPage({
             variants={FADE_DOWN_ANIMATION_VARIANTS}
           >
             <p className="text-sm text-gray-500">
-            Your photo has been deleted. Please add another photo.
+              Your photo has been deleted. Please add another photo.
             </p>
             <button
               className="group mx-auto mt-6 flex max-w-fit items-center justify-center space-x-2 rounded-full border border-black bg-black px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black"
@@ -136,13 +168,13 @@ export default function PhotoPage({
             </button>
           </motion.div>
         ) : (
-          data && data.output && !data.failed && (
-          <PhotoBoothContainer
-          input={input}
-          blurDataURL={blurDataURL}
-          output={data.output}
-          />
-        )
+          data && (
+            <PhotoBoothContainer
+              input={input}
+              blurDataURL={blurDataURL}
+              output={data.output}
+            />
+          )
         )}
       </motion.div>
     </Layout>

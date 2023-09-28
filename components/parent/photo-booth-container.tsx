@@ -27,7 +27,6 @@ export default function PhotoBoothContainer({
   //shared states
   const [state, setState] = useState("output");
   const [loading, setLoading] = useState(true);
-  const [failed, setFailed] = useState(false)
   
   //get the route
   const router = useRouter();
