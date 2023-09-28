@@ -4,10 +4,6 @@ import PhotoBooth from "../home/photo-booth";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import { fetcher } from "@/lib/utils";
-import { getData } from "@/lib/upstash";
-import { ParsedUrlQuery } from "node:querystring";
-import { GetStaticPropsContext } from "next";
-import { getPlaiceholder } from "plaiceholder";
 
 interface DataProps {
   output: string | null; // output of prediction
@@ -65,46 +61,11 @@ export default function PhotoBoothContainer({
              output={data!.output}
              failed={data!.failed}
           />
+
+          
     
     )}
     </>
   );
 }
 
-export const getStaticPaths = async () => {
-  return {
-    paths: [],
-    fallback: "blocking",
-  };
-};
-
-interface Params extends ParsedUrlQuery {
-  id: string;
-}
-
-export const getStaticProps = async (
-  context: GetStaticPropsContext & { params: Params },
-) => {
-  const { id } = context.params;
-  const input = `${process.env.NEXT_PUBLIC_CLOUDFLARE_WORKER}/${id}`;
-  const data = await getData(id);
-  if (data) {
-    let imageData: { base64: string } | undefined;
-    try {
-      imageData = await getPlaiceholder(input);
-    } catch (error) {
-      console.error(error);
-    }
-    const { base64 } = imageData || {};
-    return {
-      props: {
-        input,
-        blurDataURL: base64 || "",
-        data,
-      },
-      revalidate: 1,
-    };
-  } else {
-    return { notFound: true, revalidate: 1 };
-  }
-};

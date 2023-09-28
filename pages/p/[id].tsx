@@ -1,16 +1,15 @@
-// import { GetStaticPropsContext } from "next";
+import { GetStaticPropsContext } from "next";
 // import { useRouter } from "next/router";
 import Balancer from "react-wrap-balancer";
 import { motion } from "framer-motion";
-// import { ParsedUrlQuery } from "node:querystring";
+import { ParsedUrlQuery } from "node:querystring";
 // import useSWR from "swr";
 // import { fetcher } from "@/lib/utils";
 import Layout from "@/components/layout";
-// import { getData, DataProps } from "@/lib/upstash";
-import { DataProps } from "@/lib/upstash";
+import { getData, DataProps } from "@/lib/upstash";
 import { FADE_DOWN_ANIMATION_VARIANTS } from "@/lib/constants";
 // import PhotoBooth from "@/components/home/photo-booth";
-// import { getPlaiceholder } from "plaiceholder";
+import { getPlaiceholder } from "plaiceholder";
 import { useUploadModal } from "@/components/home/upload-modal";
 import { Upload } from "lucide-react";
 import { Toaster } from "react-hot-toast";
@@ -116,38 +115,37 @@ export default function PhotoPage({
                         - it's the first image generation from the user
                         - 
                     */}
-          {loading && (
-            <div className="mt-4 p-2">
-              <div className="text-center flex flex-col items-center justify-center">
-                <LoadingCircle />
-                {showFirstText && (
-                <p className="pt-3 text-sm text-gray-500">
-                  Analyzing your skin...
-                </p>
+                { loading && !data?.expired && (
+                  <div className="mt-4 p-2">
+                    <div className="text-center flex flex-col items-center justify-center">
+                      <LoadingCircle />
+                      {showFirstText && (
+                      <p className="pt-3 text-sm text-gray-500">
+                        Analyzing your skin...
+                      </p>
+                      )}
+                      {showSecondText && (
+                      <p className="pt-3 text-sm text-gray-500">
+                        Choosing the best product for your skin...
+                      </p>
+                      )}
+                    </div>
+                  </div>
                 )}
-                {showSecondText && (
-                <p className="pt-3 text-sm text-gray-500">
-                  Choosing the best product for your skin...
-                </p>
+                {showProductResult && !data?.expired && (
+                  // The result product (Showed above the photo-booth)
+                  <div className="mt-4 p-2">
+                    <div className="text-center flex flex-col items-center justify-center">
+                      <p>Good News!</p>
+                      <p>We found the recommended product for your skin!</p>
+                      <button className="group mx-auto mt-6 flex max-w-fit items-center justify-center space-x-2 rounded-full border border-black bg-green-600 px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black">
+                        <Link href="https://madeofhealth.com/product/link">
+                          Discover the product
+                        </Link>
+                      </button>
+                    </div>
+                  </div>
                 )}
-              </div>
-            </div>
-          )}
-          {showProductResult && (
-            // The result product (Showed above the photo-booth)
-            <div className="mt-4 p-2">
-              <div className="text-center flex flex-col items-center justify-center">
-                <p>Good News!</p>
-                <p>We found the recommended product for your skin!</p>
-                <button className="group mx-auto mt-6 flex max-w-fit items-center justify-center space-x-2 rounded-full border border-black bg-green-600 px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black">
-                  <Link href="https://madeofhealth.com/product/link">
-                    Discover the product
-                  </Link>
-                </button>
-              </div>
-            </div>
-          )}
-
           <Balancer ratio={0.6} className="invisible">
             text text text text text text text text text text text text text
           </Balancer>
@@ -182,8 +180,8 @@ export default function PhotoPage({
   );
 }
 
-//old part moved to photo-booth-container.tsx
-{/*
+//
+
 export const getStaticPaths = async () => {
   return {
     paths: [],
@@ -221,4 +219,3 @@ export const getStaticProps = async (
     return { notFound: true, revalidate: 1 };
   }
 };
-*/}
