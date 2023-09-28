@@ -1,15 +1,16 @@
-import { GetStaticPropsContext } from "next";
-import { useRouter } from "next/router";
+// import { GetStaticPropsContext } from "next";
+// import { useRouter } from "next/router";
 import Balancer from "react-wrap-balancer";
 import { motion } from "framer-motion";
-import { ParsedUrlQuery } from "node:querystring";
-import useSWR from "swr";
-import { fetcher } from "@/lib/utils";
+// import { ParsedUrlQuery } from "node:querystring";
+// import useSWR from "swr";
+// import { fetcher } from "@/lib/utils";
 import Layout from "@/components/layout";
-import { getData, DataProps } from "@/lib/upstash";
+// import { getData, DataProps } from "@/lib/upstash";
+import { DataProps } from "@/lib/upstash";
 import { FADE_DOWN_ANIMATION_VARIANTS } from "@/lib/constants";
-import PhotoBooth from "@/components/home/photo-booth";
-import { getPlaiceholder } from "plaiceholder";
+// import PhotoBooth from "@/components/home/photo-booth";
+// import { getPlaiceholder } from "plaiceholder";
 import { useUploadModal } from "@/components/home/upload-modal";
 import { Upload } from "lucide-react";
 import { Toaster } from "react-hot-toast";
@@ -37,7 +38,7 @@ export default function PhotoPage({
   loading?: boolean; // Add loading as a prop
   setLoading?: (loading: boolean) => void; // Add setLoading as a prop
 }) {
-  const router = useRouter();
+  
  
   const [showFirstText, setShowFirstText] = useState(true);
   const [showSecondText, setShowSecondText] = useState(false);
@@ -67,7 +68,7 @@ export default function PhotoPage({
     refreshInterval: (fallbackData && fallbackData.output) || (fallbackData && fallbackData.expired) ? 0 : 500,
     refreshWhenHidden: true,
   });
-*/
+ */
   }
   const { UploadModal, setShowUploadModal } = useUploadModal();
 
@@ -181,6 +182,8 @@ export default function PhotoPage({
   );
 }
 
+//old part moved to photo-booth-container.tsx
+{/*
 export const getStaticPaths = async () => {
   return {
     paths: [],
@@ -218,3 +221,4 @@ export const getStaticProps = async (
     return { notFound: true, revalidate: 1 };
   }
 };
+*/}
