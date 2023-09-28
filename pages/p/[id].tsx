@@ -171,7 +171,8 @@ export default function PhotoPage({
             <PhotoBoothContainer
               input={input}
               blurDataURL={blurDataURL}
-              output={data.output}
+              output={data!.output}
+              failed={data!.failed}
             />
           )
         )}

@@ -47,7 +47,7 @@ export default function PhotoBooth({
 }: {
   input?: string;
   blurDataURL?: string;
-  output?: string | null;
+  output: string | null;
   failed?: boolean;
   state?: string; // Add state as a prop
   setState?: (value: string) => void; // Add setState as a prop
