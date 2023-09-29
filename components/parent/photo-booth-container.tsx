@@ -36,7 +36,7 @@ export default function PhotoBoothContainer({
   const id: boolean = router.pathname === "/p/[id]";
 
   //data fetching
-  const { data, error, isLoading } = useSWR<DataProps>(`/api/images/${id}`, fetcher, {
+  const { data, error, isLoading, isValidating } = useSWR<DataProps>(`/api/images/${id}`, fetcher, {
     fallbackData,
     refreshInterval: fallbackData?.output || fallbackData?.expired ? 0 : 500,
     refreshWhenHidden: true,
@@ -61,6 +61,7 @@ export default function PhotoBoothContainer({
             state={state}
             setState={setState}
             loading={isLoading}
+            validating={isValidating}
           // setLoading={setLoading}
             input={input}
             blurDataURL={blurDataURL}
