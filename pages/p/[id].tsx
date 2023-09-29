@@ -119,7 +119,7 @@ export default function PhotoPage({
                         - it's the first image generation from the user
                         - 
                     */}
-                { loading && !data?.expired && (
+                { loading && (data?.expired !== true) && (
                   <div className="mt-4 p-2">
                     <div className="text-center flex flex-col items-center justify-center">
                       <LoadingCircle />
@@ -136,7 +136,7 @@ export default function PhotoPage({
                     </div>
                   </div>
                 )}
-                {showProductResult && !data?.expired && (
+                {showProductResult && (data?.expired !== true) && (
                   // The result product (Showed above the photo-booth)
                   <div className="mt-4 p-2">
                     <div className="text-center flex flex-col items-center justify-center">
