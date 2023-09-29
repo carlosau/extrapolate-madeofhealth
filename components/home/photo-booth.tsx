@@ -80,6 +80,7 @@ export default function PhotoBooth({
 
   useEffect(() => {
     if (data?.output) {
+      setShowForm(false);
       setLoading(false); // Update loading state based on data
     }
   }, [data]);
