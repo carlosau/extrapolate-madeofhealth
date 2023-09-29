@@ -78,13 +78,6 @@ export default function PhotoBooth({
     }
   }, [output]);
 
-  useEffect(() => {
-    if (data && !loading) {
-      // Data has loaded and loading is complete, you can now display the image
-      setLoading(false); // Set loading to false
-    }
-  }, [data, loading]);
-
   console.log("Loading FROM PHOTOBOOTH is: " + loading);
 
   console.log("State is: " + state);
@@ -190,23 +183,10 @@ export default function PhotoBooth({
                   )}
                 </div>
               )}
-              {/* ... output image for index page */}
               {output && (
                 <Image
                   alt="output image"
                   src={output}
-                  width={1280}
-                  height={1280}
-                  className="h-full object-cover"
-                  onLoadStart={() => setLoading(true)}
-                  onLoadingComplete={() => setLoading(false)}
-                />
-              )}
-              {/* ... output image for result */}
-              {data?.output && !loading && (
-                <Image
-                  alt="output image"
-                  src={data.output}
                   width={1280}
                   height={1280}
                   className="h-full object-cover"
