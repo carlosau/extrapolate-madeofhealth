@@ -73,11 +73,11 @@ export default function PhotoBooth({
     }, 5000);
   }, [loading]);
 
-  // useEffect(() => {
-  //   if (output) {
-  //     setLoading(false);
-  //   }
-  // }, [output]);
+  useEffect(() => {
+    if (output) {
+      setLoading(false);
+    }
+  }, [output]);
 
   useEffect(() => {
     if (data?.output) {
