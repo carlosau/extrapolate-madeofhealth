@@ -31,7 +31,7 @@ export default function PhotoBoothContainer({
   
   //get the route
   const router = useRouter();
-  const id: boolean = router.pathname === "/p/[id]";
+  const { id } = router.query;
 
   //data fetching
   const { data, error } = useSWR<DataProps>(`/api/images/${id}`, fetcher, {
