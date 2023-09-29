@@ -28,7 +28,6 @@ export default function PhotoBoothContainer({
 }: PhotoBoothContainerProps) {
   //shared states
   const [state, setState] = useState("output");
-  const [loading, setLoading] = useState(true);
   
   //get the route
   const router = useRouter();
@@ -42,14 +41,17 @@ export default function PhotoBoothContainer({
     refreshWhenHidden: true,
   });
 
+  //const isLoading
+  const isLoading = !data && !Error
+  
   return (
     <>
       {/* Pass the shared states as props to the PhotoBooth component */}
       <PhotoBooth
         state={state}
         setState={setState}
-        loading={loading}
-        setLoading={setLoading}
+        loading={isLoading}
+       // setLoading={setLoading}
         input={input}
         blurDataURL={blurDataURL}
         output={output}
@@ -60,8 +62,8 @@ export default function PhotoBoothContainer({
             <PhotoBooth
             state={state}
             setState={setState}
-            loading={loading}
-            setLoading={setLoading}
+            loading={isLoading}
+           // setLoading={setLoading}
             input={input}
             blurDataURL={blurDataURL}
              output={output}
