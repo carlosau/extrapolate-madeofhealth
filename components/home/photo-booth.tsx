@@ -94,7 +94,7 @@ export default function PhotoBooth({
 
   console.log("ShowForm is: " + showForm);
 
-  console.log("ShowForm is: " + validating);
+  console.log("validating is: " + validating);
 
   return (
     <motion.div

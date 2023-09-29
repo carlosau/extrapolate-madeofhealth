@@ -56,7 +56,7 @@ export default function PhotoBoothContainer({
       />
 
       {/* Pass the shared states as props to the PhotoPage component */}
-      {isPhotoPageRoute && data && (
+      {data && (
             <PhotoBooth
             state={state}
             setState={setState}
