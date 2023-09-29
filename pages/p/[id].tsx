@@ -22,20 +22,18 @@ export default function PhotoPage({
   input = "",
   blurDataURL,
   data,
-  failed,
   state = "", // Receive state as a prop
   setState = () => {}, // Receive setState as a prop
   loading = true, // Receive loading as a prop
   setLoading = () => {}, // Receive setLoading as a prop
 }: {
-  input?: string;
-  blurDataURL?: string;
-  data: DataProps | undefined;
-  failed: boolean;
-  state?: string; // Add state as a prop
-  setState?: (state: string) => void; // Add setState as a prop
-  loading?: boolean; // Add loading as a prop
-  setLoading?: (loading: boolean) => void; // Add setLoading as a prop
+  input: string;
+  blurDataURL: string;
+  data: DataProps;
+  state: string; // Add state as a prop
+  setState: (state: string) => void; // Add setState as a prop
+  loading: boolean; // Add loading as a prop
+  setLoading: (loading: boolean) => void; // Add setLoading as a prop
 }) {
   
  
@@ -79,6 +77,12 @@ export default function PhotoPage({
       setShowProductResult(true);
     }
   }, [loading]);
+
+  console.log('Data.expired? :' + data?.expired)
+
+  console.log('Data.output: ' + data?.output)
+
+  console.log('Data.failed? ' + data?.failed)
 
   return (
     <Layout>
@@ -167,14 +171,12 @@ export default function PhotoPage({
             </button>
           </motion.div>
         ) : (
-          data && (
             <PhotoBoothContainer
               input={input}
               blurDataURL={blurDataURL}
               output={data!.output}
               failed={data!.failed}
             />
-          )
         )}
       </motion.div>
     </Layout>

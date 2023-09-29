@@ -15,7 +15,7 @@ interface PhotoBoothContainerProps {
   input: string;
   blurDataURL?: string;
   output: string | null;
-  data?: DataProps | undefined;
+  data?: DataProps;
   failed?: boolean
 }
 
@@ -38,7 +38,7 @@ export default function PhotoBoothContainer({
   //data fetching
   const { data } = useSWR<DataProps>(`/api/images/${id}`, fetcher, {
     fallbackData,
-    refreshInterval: (fallbackData && fallbackData.output) || (fallbackData && fallbackData.expired) ? 0 : 500,
+    refreshInterval: fallbackData?.output || fallbackData?.expired ? 0 : 500,
     refreshWhenHidden: true,
   });
 

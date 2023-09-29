@@ -45,14 +45,14 @@ export default function PhotoBooth({
   loading, // Receive loading as a prop
   setLoading = () => {}, // Receive setLoading as a prop
 }: {
-  input?: string;
+  input: string;
   blurDataURL?: string;
   output: string | null;
   failed?: boolean;
-  state?: string; // Add state as a prop
-  setState?: (value: string) => void; // Add setState as a prop
-  loading?: boolean; // Add loading as a prop
-  setLoading?: (value: boolean) => void; // Add setLoading as a prop
+  state: string; // Add state as a prop
+  setState: (state: string) => void; // Add setState as a prop
+  loading: boolean; // Add loading as a prop
+  setLoading: (loading: boolean) => void; // Add setLoading as a prop
 }) {
   const router = useRouter();
   const { id } = router.query;
@@ -74,6 +74,12 @@ export default function PhotoBooth({
       setLoading(false);
     }
   }, [output]);
+
+  console.log('Loading is: ' + loading)
+
+  console.log('State is: ' + state)
+
+  console.log('Failed is: ' + failed)
 
   return (
     <motion.div
