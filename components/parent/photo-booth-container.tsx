@@ -24,19 +24,17 @@ export default function PhotoBoothContainer({
   blurDataURL,
   output,
   data: fallbackData,
-  failed
 }: PhotoBoothContainerProps) {
   //shared states
   const [state, setState] = useState("output");
-  // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   
   //get the route
   const router = useRouter();
-  const isPhotoPageRoute = router.pathname === "/p/[id]";
   const id: boolean = router.pathname === "/p/[id]";
 
   //data fetching
-  const { data, error, isLoading, isValidating } = useSWR<DataProps>(`/api/images/${id}`, fetcher, {
+  const { data, error } = useSWR<DataProps>(`/api/images/${id}`, fetcher, {
     fallbackData,
     refreshInterval: fallbackData?.output || fallbackData?.expired ? 0 : 500,
     refreshWhenHidden: true,
@@ -48,31 +46,14 @@ export default function PhotoBoothContainer({
       <PhotoBooth
         state={state}
         setState={setState}
-        loading={isLoading}
-       // setLoading={setLoading}
+        loading={loading}
+        setLoading={setLoading}
         input={input}
         blurDataURL={blurDataURL}
         output={output}
+        data={data}
+        failed={error}
       />
-
-      {/* Pass the shared states as props to the PhotoPage component */}
-      {data && (
-            <PhotoBooth
-            state={state}
-            setState={setState}
-            loading={isLoading}
-            validating={isValidating}
-          // setLoading={setLoading}
-            input={input}
-            blurDataURL={blurDataURL}
-             output={output}
-             failed={failed}
-             data={data}
-          />
-
-          
-    
-    )}
     </>
   );
 }

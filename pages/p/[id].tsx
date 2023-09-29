@@ -23,18 +23,12 @@ export default function PhotoPage({
   input = "",
   blurDataURL,
   data,
-  state = "", // Receive state as a prop
-  setState = () => {}, // Receive setState as a prop
   loading = true, // Receive loading as a prop
- // setLoading = () => {}, // Receive setLoading as a prop
 }: {
   input: string;
   blurDataURL: string;
   data: DataProps;
-  state: string; // Add state as a prop
-  setState: (state: string) => void; // Add setState as a prop
   loading: boolean; // Add loading as a prop
- // setLoading: (loading: boolean) => void; // Add setLoading as a prop
 }) {
   
  
@@ -177,7 +171,7 @@ export default function PhotoPage({
             <PhotoBoothContainer
               input={input}
               blurDataURL={blurDataURL}
-              output={data.output}
+              output={data!.output}
               failed={data!.failed}
             />
         )}

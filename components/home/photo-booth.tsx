@@ -45,8 +45,8 @@ export default function PhotoBooth({
   state, // Receive state as a prop
   setState = () => {}, // Receive setState as a prop
   loading, // Receive loading as a prop
-  validating,
-}: // setLoading = () => {}, // Receive setLoading as a prop
+  setLoading = () => {}, // Receive setLoading as a prop
+}: 
 {
   input: string;
   blurDataURL?: string;
@@ -56,8 +56,7 @@ export default function PhotoBooth({
   state: string; // Add state as a prop
   setState: (state: string) => void; // Add setState as a prop
   loading: boolean; // Add loading as a prop
-  validating?: boolean
-  // setLoading: (loading: boolean) => void; // Add setLoading as a prop
+  setLoading: (loading: boolean) => void; // Add setLoading as a prop
 }) {
   const router = useRouter();
   const { id } = router.query;
@@ -74,11 +73,11 @@ export default function PhotoBooth({
     }, 5000);
   }, [loading]);
 
-  useEffect(() => {
-    if (output) {
-      loading = false;
-    }
-  }, [output]);
+  // useEffect(() => {
+  //   if (output) {
+  //     setLoading(false);
+  //   }
+  // }, [output]);
 
   useEffect(() => {
     if (data?.output) {
@@ -93,8 +92,6 @@ export default function PhotoBooth({
   console.log("Failed is: " + failed);
 
   console.log("ShowForm is: " + showForm);
-
-  console.log("validating is: " + validating);
 
   return (
     <motion.div
@@ -200,19 +197,8 @@ export default function PhotoBooth({
                   width={1280}
                   height={1280}
                   className="h-full object-cover"
-                  onLoadStart={() => (loading = true)}
-                  onLoadingComplete={() => (loading = false)}
-                />
-              )}
-              {output && data?.output && (
-                <Image
-                  alt="output image"
-                  src={data.output}
-                  width={1280}
-                  height={1280}
-                  className="h-full object-cover"
-                  onLoadStart={() => (loading = true)}
-                  onLoadingComplete={() => (loading = false)}
+                  onLoadStart={() => (setLoading(true))}
+                  onLoadingComplete={() => (setLoading(false))}
                 />
               )}
             </motion.div>
