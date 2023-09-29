@@ -80,18 +80,24 @@ export default function PhotoBooth({
   }, [output]);
 
   useEffect(() => {
-    if (data?.output) {
-      loading = false; // Update loading state based on data
+    if (data) {
+      setLoading(false); // Update loading state based on data
     }
   }, [data]);
 
   console.log("Loading FROM PHOTOBOOTH is: " + loading);
 
-  console.log("State is: " + state);
+  console.log("State FROM PHOTOBOOTH is: " + state);
 
-  console.log("Failed is: " + failed);
+  console.log("Failed FROM PHOTOBOOTH is: " + failed);
 
-  console.log("ShowForm is: " + showForm);
+  console.log("ShowForm FROM PHOTOBOOTH is: " + showForm);
+
+  console.log('Data.expired? FROM PHOTOBOOTH: ' + data?.expired)
+
+  console.log('Data.output FROM PHOTOBOOTH: ' + data?.output)
+
+  console.log('Data.failed? FROM PHOTOBOOTH: ' + data?.failed)
 
   return (
     <motion.div

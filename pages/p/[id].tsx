@@ -73,13 +73,13 @@ export default function PhotoPage({
     }
   }, [loading]);
 
-  console.log('Data.expired? :' + data?.expired)
+  console.log('Data.expired? FROM [ID]: ' + data?.expired)
 
-  console.log('Data.output: ' + data?.output)
+  console.log('Data.output FROM [ID]: ' + data?.output)
 
-  console.log('Data.failed? ' + data?.failed)
+  console.log('Data.failed? FROM [ID]: ' + data?.failed)
 
-  console.log('Loading [id] is: ' + loading)
+  console.log('Loading FROM [ID] is: ' + loading)
 
   return (
     <Layout>
