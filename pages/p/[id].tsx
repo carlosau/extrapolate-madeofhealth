@@ -79,12 +79,6 @@ export default function PhotoPage({
     }
   }, [loading]);
 
-  useEffect(() => {
-    if (data.output) {
-      setLoading(false);
-    }
-  }, [data.output]);
-
   console.log('Data.expired? :' + data?.expired)
 
   console.log('Data.output: ' + data?.output)

@@ -45,7 +45,7 @@ export default function PhotoBooth({
   state, // Receive state as a prop
   setState = () => {}, // Receive setState as a prop
   loading, // Receive loading as a prop
- // setLoading = () => {}, // Receive setLoading as a prop
+  setLoading = () => {}, // Receive setLoading as a prop
 }: {
   input: string;
   blurDataURL?: string;
@@ -55,7 +55,7 @@ export default function PhotoBooth({
   state: string; // Add state as a prop
   setState: (state: string) => void; // Add setState as a prop
   loading: boolean; // Add loading as a prop
- // setLoading: (loading: boolean) => void; // Add setLoading as a prop
+  setLoading: (loading: boolean) => void; // Add setLoading as a prop
 }) {
   const router = useRouter();
   const { id } = router.query;
@@ -74,9 +74,15 @@ export default function PhotoBooth({
 
   useEffect(() => {
     if (output) {
-      loading === false;
+      setLoading(false);
     }
   }, [output]);
+
+  useEffect(() => {
+    if (data?.output) {
+      setLoading(false); // Update loading state based on data
+    }
+  }, [data]);
 
   console.log("Loading FROM PHOTOBOOTH is: " + loading);
 
