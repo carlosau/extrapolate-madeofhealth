@@ -84,6 +84,8 @@ export default function PhotoPage({
 
   console.log('Data.failed? ' + data?.failed)
 
+  console.log('Loading [id] is: ' + loading)
+
   return (
     <Layout>
       <Toaster />

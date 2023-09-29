@@ -75,11 +75,13 @@ export default function PhotoBooth({
     }
   }, [output]);
 
-  console.log('Loading is: ' + loading)
+  console.log('Loading FROM PHOTOBOOTH is: ' + loading)
 
   console.log('State is: ' + state)
 
   console.log('Failed is: ' + failed)
+
+  console.log('direction is: ' + direction)
 
   return (
     <motion.div
