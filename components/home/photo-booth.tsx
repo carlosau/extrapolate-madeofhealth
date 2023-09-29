@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { LoadingCircle } from "../shared/icons";
 import VideoPlayer from "../video/VideoPlayer";
-import { DataProps } from "@/lib/upstash";
+import { DataProps } from "@/components/parent/photo-booth-container";
 
 const variants = {
   enter: (direction: number) => {
@@ -73,10 +73,10 @@ export default function PhotoBooth({
   }, [loading]);
 
   useEffect(() => {
-    if (data?.output) {
+    if (output) {
       setLoading(false);
     }
-  }, [data?.output]);
+  }, [output]);
 
   console.log('Loading FROM PHOTOBOOTH is: ' + loading)
 
@@ -183,7 +183,7 @@ export default function PhotoBooth({
                   )}
                 </div>
               )}
-              {output && data?.output && (
+              {output && (
                 <Image
                   alt="output image"
                   src={output}

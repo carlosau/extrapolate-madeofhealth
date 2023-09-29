@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import { fetcher } from "@/lib/utils";
 
-interface DataProps {
+export interface DataProps {
   output: string | null; // output of prediction
   expired?: boolean; // if the data is expired
   failed?: boolean; // if the prediction failed
