@@ -36,9 +36,9 @@ export default function PhotoBoothContainer({
   const id: boolean = router.pathname === "/p/[id]";
 
   //data fetching
-  const { data } = useSWR<DataProps>(`/api/images/${id}-${new Date().getTime()}`, fetcher, {
+  const { data } = useSWR<DataProps>(`/api/images/${id}`, fetcher, {
     fallbackData,
-    refreshInterval: 500,
+    refreshInterval: fallbackData?.output || fallbackData?.expired ? 0 : 500,
     refreshWhenHidden: true,
   });
 
