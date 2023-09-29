@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { LoadingCircle } from "../shared/icons";
 import VideoPlayer from "../video/VideoPlayer";
+import { DataProps } from "@/lib/upstash";
 
 const variants = {
   enter: (direction: number) => {
@@ -40,6 +41,7 @@ export default function PhotoBooth({
   blurDataURL,
   output,
   failed,
+  data,
   state, // Receive state as a prop
   setState = () => {}, // Receive setState as a prop
   loading, // Receive loading as a prop
@@ -49,6 +51,7 @@ export default function PhotoBooth({
   blurDataURL?: string;
   output: string | null;
   failed?: boolean;
+  data?: DataProps,
   state: string; // Add state as a prop
   setState: (state: string) => void; // Add setState as a prop
   loading: boolean; // Add loading as a prop
@@ -70,10 +73,10 @@ export default function PhotoBooth({
   }, [loading]);
 
   useEffect(() => {
-    if (output) {
+    if (data?.output) {
       setLoading(false);
     }
-  }, [output]);
+  }, [data?.output]);
 
   console.log('Loading FROM PHOTOBOOTH is: ' + loading)
 
@@ -180,7 +183,7 @@ export default function PhotoBooth({
                   )}
                 </div>
               )}
-              {output && (
+              {output && data?.output && (
                 <Image
                   alt="output image"
                   src={output}
