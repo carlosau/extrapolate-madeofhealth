@@ -73,10 +73,10 @@ export default function PhotoBooth({
   }, [loading]);
 
   useEffect(() => {
-    if (output) {
-      setLoading(false);
-    }
-  }, [output]);
+  if (output !== null) {
+    setLoading(false); // Set loading to false when output is available
+  }
+}, [output, setLoading]);
 
   console.log("Loading FROM PHOTOBOOTH is: " + loading);
 

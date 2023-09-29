@@ -56,7 +56,7 @@ export default function PhotoBoothContainer({
       />
 
       {/* Pass the shared states as props to the PhotoPage component */}
-      {isPhotoPageRoute && data && data.output && (
+      {isPhotoPageRoute && data && (
             <PhotoBooth
             state={state}
             setState={setState}
@@ -64,7 +64,7 @@ export default function PhotoBoothContainer({
             setLoading={setLoading}
             input={input}
             blurDataURL={blurDataURL}
-             output={data.output}
+             output={output}
              failed={failed}
           />
 
