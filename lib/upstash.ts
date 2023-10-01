@@ -1,7 +1,7 @@
 import { Redis } from "@upstash/redis";
 import { Ratelimit } from "@upstash/ratelimit";
 import { customAlphabet } from "nanoid";
-import { DataProps } from "@/components/parent/photo-booth-container";
+//import { DataProps } from "@/components/parent/photo-booth-container";
 
 // Initiate Redis instance
 export const redis = new Redis({
@@ -38,13 +38,11 @@ export async function setRandomKey(): Promise<{ key: string }> {
   }
 }
 
-{/* Now its in: photo-booth-container.tsx
 export interface DataProps {
   output: string | null; // output of prediction
   expired?: boolean; // if the data is expired
   failed?: boolean; // if the prediction failed
 }
-*/}
 
 export async function getData(id: string) {
   return await redis.get<DataProps>(id);

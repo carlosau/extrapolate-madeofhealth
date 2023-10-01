@@ -5,8 +5,6 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { LoadingCircle } from "../shared/icons";
-import VideoPlayer from "../video/VideoPlayer";
-import { DataProps } from "@/components/parent/photo-booth-container";
 
 const variants = {
   enter: (direction: number) => {
@@ -37,32 +35,23 @@ function forceDownload(blobUrl: string, filename: string) {
 }
 
 export default function PhotoBooth({
-  input = "",
+  input,
   blurDataURL,
   output,
   failed,
-  data,
-  state, // Receive state as a prop
-  setState = () => {}, // Receive setState as a prop
-  loading, // Receive loading as a prop
-  setLoading = () => {}, // Receive setLoading as a prop
-}: 
-{
+}: {
   input: string;
   blurDataURL?: string;
   output: string | null;
   failed?: boolean;
-  data?: DataProps;
-  state: string; // Add state as a prop
-  setState: (state: string) => void; // Add setState as a prop
-  loading: boolean; // Add loading as a prop
-  setLoading: (loading: boolean) => void; // Add setLoading as a prop
 }) {
   const router = useRouter();
   const { id } = router.query;
 
+  const [state, setState] = useState("output");
   const direction = useMemo(() => (state === "output" ? 1 : -1), [state]);
   const [downloading, setDownloading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
@@ -79,29 +68,9 @@ export default function PhotoBooth({
     }
   }, [output]);
 
-  useEffect(() => {
-    if (data) {
-      setLoading(false); // Update loading state based on data
-    }
-  }, [data]);
-
-  console.log("Loading FROM PHOTOBOOTH is: " + loading);
-
-  console.log("State FROM PHOTOBOOTH is: " + state);
-
-  console.log("Failed FROM PHOTOBOOTH is: " + failed);
-
-  console.log("ShowForm FROM PHOTOBOOTH is: " + showForm);
-
-  console.log('Data.expired? FROM PHOTOBOOTH: ' + data?.expired)
-
-  console.log('Data.output FROM PHOTOBOOTH: ' + data?.output)
-
-  console.log('Data.failed? FROM PHOTOBOOTH: ' + data?.failed)
-
   return (
     <motion.div
-      className="group relative mx-auto mt-0 h-[400px] w-full overflow-hidden rounded-2xl border border-gray-200 sm:mt-2 sm:h-[600px] sm:w-[600px]"
+      className="group relative mx-auto mt-10 h-[350px] w-full overflow-hidden rounded-2xl border border-gray-200 sm:h-[600px] sm:w-[600px]"
       variants={FADE_DOWN_ANIMATION_VARIANTS}
     >
       <button
@@ -144,7 +113,7 @@ export default function PhotoBooth({
           {downloading ? (
             <LoadingCircle />
           ) : (
-            <Download className="h-5 w-5 text-green-500" />
+            <Download className="h-5 w-5 text-gray-500" />
           )}
         </button>
       )}
@@ -166,17 +135,14 @@ export default function PhotoBooth({
               className="absolute h-full w-full"
             >
               {failed && (
-                <div className="z-10 flex h-full w-full flex-col items-center bg-white pt-[70px] sm:pt-[100px]">
+                <div className="z-10 flex h-full w-full flex-col items-center bg-white pt-[140px] sm:pt-[280px]">
                   <p className="text-sm text-red-600">
-                    Error - Not face image. Try upload a face image!
+                    Failed to run - could not find face in image. Try another!
                   </p>
                 </div>
               )}
               {loading && (
-                <div className="z-10 flex h-full w-full flex-col items-center bg-white pt-[70px] sm:pt-[100px]">
-                  <div className="w-[350px] pb-[30px] sm:w-[500px] sm:pb-[50px]">
-                    <VideoPlayer src="/output-video-inter01-nosub-sdsize-prod.mp4" />
-                  </div>
+                <div className="z-10 flex h-full w-full flex-col items-center bg-white pt-[140px] sm:pt-[280px]">
                   <LoadingCircle />
                   {id && showForm && (
                     <motion.div
@@ -190,7 +156,7 @@ export default function PhotoBooth({
                         className="text-sm text-gray-500"
                         variants={FADE_DOWN_ANIMATION_VARIANTS}
                       >
-                        Image in processing, please wait...
+                        This can take anywhere between 2-3 minutes to run.
                       </motion.p>
                     </motion.div>
                   )}
@@ -203,8 +169,8 @@ export default function PhotoBooth({
                   width={1280}
                   height={1280}
                   className="h-full object-cover"
-                  onLoadStart={() => (setLoading(true))}
-                  onLoadingComplete={() => (setLoading(false))}
+                  onLoadStart={() => setLoading(true)}
+                  onLoadingComplete={() => setLoading(false)}
                 />
               )}
             </motion.div>
