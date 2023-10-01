@@ -8,13 +8,11 @@ import { fetcher } from "@/lib/utils";
 import Layout from "@/components/layout";
 import { getData, DataProps } from "@/lib/upstash";
 import { FADE_DOWN_ANIMATION_VARIANTS } from "@/lib/constants";
-//import PhotoBooth from "@/components/home/photo-booth";
-import PhotoBoothContainer from "@/components/parent/photo-booth-container";
+import PhotoBooth from "@/components/home/photo-booth";
 import { getPlaiceholder } from "plaiceholder";
 import { useUploadModal } from "@/components/home/upload-modal";
 import { Upload } from "lucide-react";
 import { Toaster } from "react-hot-toast";
-import { useEffect, useState } from "react";
 
 export default function PhotoPage({
   input,
@@ -33,18 +31,6 @@ export default function PhotoPage({
     refreshWhenHidden: true,
   });
   const { UploadModal, setShowUploadModal } = useUploadModal();
-
-  const [loadingId, setLoadingId] = useState(true)
-
-  useEffect(() => {
-    if (data?.output) {
-      setLoadingId(false);
-    }
-  }, [data?.output]);
-
-  console.log('Loading from [id]: ' + loadingId)
-
-  console.log('=================================')
 
   return (
     <Layout>
@@ -71,7 +57,6 @@ export default function PhotoPage({
         >
           Your Results
         </motion.h1>
-        {loadingId && (
         <motion.p
           className="mt-6 text-center text-gray-500 md:text-xl"
           variants={FADE_DOWN_ANIMATION_VARIANTS}
@@ -81,7 +66,6 @@ export default function PhotoPage({
             they will be deleted.
           </Balancer>
         </motion.p>
-        )}
         {data?.expired ? (
           <motion.div
             className="mx-auto mt-10 flex h-[350px] w-full flex-col items-center justify-center rounded-2xl border border-gray-200 bg-white sm:h-[600px] sm:w-[600px]"
@@ -99,7 +83,7 @@ export default function PhotoPage({
             </button>
           </motion.div>
         ) : (
-          <PhotoBoothContainer
+          <PhotoBooth
             input={input}
             blurDataURL={blurDataURL}
             output={data!.output}
@@ -147,4 +131,4 @@ export const getStaticProps = async (
   } else {
     return { notFound: true, revalidate: 1 };
   }
-}
+};
