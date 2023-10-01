@@ -8,7 +8,8 @@ import { fetcher } from "@/lib/utils";
 import Layout from "@/components/layout";
 import { getData, DataProps } from "@/lib/upstash";
 import { FADE_DOWN_ANIMATION_VARIANTS } from "@/lib/constants";
-import PhotoBooth from "@/components/home/photo-booth";
+//import PhotoBooth from "@/components/home/photo-booth";
+import PhotoBoothContainer from "@/components/parent/photo-booth-container";
 import { getPlaiceholder } from "plaiceholder";
 import { useUploadModal } from "@/components/home/upload-modal";
 import { Upload } from "lucide-react";
@@ -87,7 +88,7 @@ export default function PhotoPage({
             </button>
           </motion.div>
         ) : (
-          <PhotoBooth
+          <PhotoBoothContainer
             input={input}
             blurDataURL={blurDataURL}
             output={data!.output}

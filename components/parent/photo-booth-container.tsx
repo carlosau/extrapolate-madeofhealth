@@ -16,13 +16,14 @@ interface PhotoBoothContainerProps {
   blurDataURL?: string;
   output: string | null;
  // data?: DataProps;
-  //failed?: boolean
+  failed?: boolean
 }
 
 export default function PhotoBoothContainer({
   input,
   blurDataURL,
   output,
+  failed
   //data: fallbackData,
 }: PhotoBoothContainerProps) {
   //shared states
@@ -51,6 +52,7 @@ export default function PhotoBoothContainer({
         input={input}
         blurDataURL={blurDataURL}
         output={output}
+        failed={failed}
         //data={data}
       />
     </>
