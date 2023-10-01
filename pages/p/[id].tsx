@@ -13,6 +13,7 @@ import { getPlaiceholder } from "plaiceholder";
 import { useUploadModal } from "@/components/home/upload-modal";
 import { Upload } from "lucide-react";
 import { Toaster } from "react-hot-toast";
+import { useState, useEffect } from "react";
 
 export default function PhotoPage({
   input,
@@ -31,6 +32,14 @@ export default function PhotoPage({
     refreshWhenHidden: true,
   });
   const { UploadModal, setShowUploadModal } = useUploadModal();
+
+  const [loadingId, setLoadingId] = useState(true)
+
+  useEffect(() => {
+    if (data?.output) {
+      setLoadingId(false);
+    }
+  }, [data?.output]);
 
   return (
     <Layout>
@@ -57,6 +66,7 @@ export default function PhotoPage({
         >
           Your Results
         </motion.h1>
+        {!data?.expired && loadingId ? (
         <motion.p
           className="mt-6 text-center text-gray-500 md:text-xl"
           variants={FADE_DOWN_ANIMATION_VARIANTS}
@@ -66,6 +76,11 @@ export default function PhotoPage({
             they will be deleted.
           </Balancer>
         </motion.p>
+        ) : (
+          <div>
+            <p>Here is your product!</p>
+          </div>
+        )}
         {data?.expired ? (
           <motion.div
             className="mx-auto mt-10 flex h-[350px] w-full flex-col items-center justify-center rounded-2xl border border-gray-200 bg-white sm:h-[600px] sm:w-[600px]"
