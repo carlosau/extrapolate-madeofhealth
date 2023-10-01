@@ -39,11 +39,15 @@ export default function PhotoBooth({
   blurDataURL,
   output,
   failed,
+  loading,
+  setLoading = () => {},
 }: {
   input: string;
   blurDataURL?: string;
   output: string | null;
   failed?: boolean;
+  loading?: boolean,
+  setLoading?: (loading: boolean) => void;
 }) {
   const router = useRouter();
   const { id } = router.query;
@@ -51,7 +55,7 @@ export default function PhotoBooth({
   const [state, setState] = useState("output");
   const direction = useMemo(() => (state === "output" ? 1 : -1), [state]);
   const [downloading, setDownloading] = useState(false);
-  const [loading, setLoading] = useState(true);
+  //const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
@@ -67,6 +71,10 @@ export default function PhotoBooth({
       setLoading(false);
     }
   }, [output]);
+
+  console.log('=================================')
+
+  console.log('Loading from PHOTO-BOOTH: ' + loading)
 
   return (
     <motion.div

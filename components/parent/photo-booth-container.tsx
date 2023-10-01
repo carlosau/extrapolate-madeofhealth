@@ -26,7 +26,7 @@ export default function PhotoBoothContainer({
   //data: fallbackData,
 }: PhotoBoothContainerProps) {
   //shared states
-  const [state, setState] = useState("output");
+  //const [state, setState] = useState("output");
   const [loading, setLoading] = useState(true);
   
   //get the route
@@ -46,8 +46,8 @@ export default function PhotoBoothContainer({
       <PhotoBooth
         // state={state}
         // setState={setState}
-        // loading={loading}
-        // setLoading={setLoading}
+        loading={loading}
+        setLoading={setLoading}
         input={input}
         blurDataURL={blurDataURL}
         output={output}

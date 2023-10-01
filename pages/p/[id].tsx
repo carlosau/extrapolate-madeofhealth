@@ -32,6 +32,10 @@ export default function PhotoPage({
   });
   const { UploadModal, setShowUploadModal } = useUploadModal();
 
+  console.log('Loading from [id]: ' )
+
+  console.log('=================================')
+
   return (
     <Layout>
       <Toaster />
