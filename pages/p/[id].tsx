@@ -14,20 +14,16 @@ import { getPlaiceholder } from "plaiceholder";
 import { useUploadModal } from "@/components/home/upload-modal";
 import { Upload } from "lucide-react";
 import { Toaster } from "react-hot-toast";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function PhotoPage({
   input,
   blurDataURL,
   data: fallbackData,
-  loading = true,
-  setLoading,
 }: {
   input: string;
   blurDataURL: string;
   data: DataProps;
-  loading: boolean,
-  setLoading: (Value: boolean) => void,
 }) {
   const router = useRouter();
   const { id } = router.query;
@@ -38,13 +34,15 @@ export default function PhotoPage({
   });
   const { UploadModal, setShowUploadModal } = useUploadModal();
 
+  const [loadingId, setLoadingId] = useState(true)
+
   useEffect(() => {
     if (data) {
-      setLoading(false);
+      setLoadingId(false);
     }
   }, [data]);
 
-  console.log('Loading from [id]: ' + loading)
+  console.log('Loading from [id]: ' + loadingId)
 
   console.log('=================================')
 
@@ -73,7 +71,7 @@ export default function PhotoPage({
         >
           Your Results
         </motion.h1>
-        {loading && (
+        {loadingId && (
         <motion.p
           className="mt-6 text-center text-gray-500 md:text-xl"
           variants={FADE_DOWN_ANIMATION_VARIANTS}
