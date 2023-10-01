@@ -13,7 +13,8 @@ import { getPlaiceholder } from "plaiceholder";
 import { useUploadModal } from "@/components/home/upload-modal";
 import { Upload } from "lucide-react";
 import { Toaster } from "react-hot-toast";
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
+import { LoadingCircle } from "@/components/shared/icons";
 
 export default function PhotoPage({
   input,
@@ -33,20 +34,32 @@ export default function PhotoPage({
   });
   const { UploadModal, setShowUploadModal } = useUploadModal();
 
-  const [loadingId, setLoadingId] = useState(true)
-
+  //loading for this page
+  const [loadingId, setLoadingId] = useState(true);
   useEffect(() => {
     if (data?.output) {
       setLoadingId(false);
     }
   }, [data?.output]);
 
+  //times to show texts
+  const [showFirstText, setShowFirstText] = useState(true)
+  const [showSecondText, setShowSecondText] = useState(false)
+  useEffect(() => {
+    setTimeout(() => {
+      if (loadingId) {
+        setShowFirstText(false);
+        setShowSecondText(true);
+      }
+    }, 8000);
+  }, [loadingId]);
+
   return (
     <Layout>
       <Toaster />
       <UploadModal />
       <motion.div
-        className="z-10 max-w-2xl px-5 xl:px-0"
+        className="z-10 w-full px-5 xl:px-0"
         initial="hidden"
         whileInView="show"
         animate="show"
@@ -67,15 +80,25 @@ export default function PhotoPage({
           Your Results
         </motion.h1>
         {!data?.expired && loadingId ? (
-        <motion.p
-          className="mt-6 text-center text-gray-500 md:text-xl"
-          variants={FADE_DOWN_ANIMATION_VARIANTS}
-        >
-          <Balancer ratio={0.6}>
-            Your photos will be stored in our servers for 24 hours. After that,
-            they will be deleted.
-          </Balancer>
-        </motion.p>
+          <div className="align-center flex flex-col items-center justify-center">
+
+            {/* First text while loading */}
+            {showFirstText && (
+            <div className="align-center flex flex-col items-center justify-center pt-6">
+              <LoadingCircle />
+              <p className="p-4">Analyzing your skin...</p>
+            </div>
+            )}
+
+            {/* Second text while loading */}
+            {showSecondText&& (
+            <div className="align-center flex flex-col items-center justify-center pt-6">
+              <LoadingCircle />
+              <p className="p-4">Choosing one great product for you...</p>
+            </div>
+            )}
+
+          </div>
         ) : (
           <div>
             <p>Here is your product!</p>
