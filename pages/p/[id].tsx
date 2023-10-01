@@ -37,10 +37,10 @@ export default function PhotoPage({
   const [loadingId, setLoadingId] = useState(true)
 
   useEffect(() => {
-    if (data) {
+    if (data?.output) {
       setLoadingId(false);
     }
-  }, [data]);
+  }, [data?.output]);
 
   console.log('Loading from [id]: ' + loadingId)
 
