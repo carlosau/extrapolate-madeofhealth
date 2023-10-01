@@ -19,10 +19,12 @@ export default function PhotoPage({
   input,
   blurDataURL,
   data: fallbackData,
+  loading,
 }: {
   input: string;
   blurDataURL: string;
   data: DataProps;
+  loading: boolean
 }) {
   const router = useRouter();
   const { id } = router.query;
@@ -33,7 +35,7 @@ export default function PhotoPage({
   });
   const { UploadModal, setShowUploadModal } = useUploadModal();
 
-  console.log('Loading from [id]: ' )
+  console.log('Loading from [id]: ' + loading)
 
   console.log('=================================')
 
@@ -62,6 +64,7 @@ export default function PhotoPage({
         >
           Your Results
         </motion.h1>
+        {loading && (
         <motion.p
           className="mt-6 text-center text-gray-500 md:text-xl"
           variants={FADE_DOWN_ANIMATION_VARIANTS}
@@ -71,6 +74,7 @@ export default function PhotoPage({
             they will be deleted.
           </Balancer>
         </motion.p>
+        )}
         {data?.expired ? (
           <motion.div
             className="mx-auto mt-10 flex h-[350px] w-full flex-col items-center justify-center rounded-2xl border border-gray-200 bg-white sm:h-[600px] sm:w-[600px]"
