@@ -21,11 +21,13 @@ export default function PhotoPage({
   blurDataURL,
   data: fallbackData,
   loading = true,
+  setLoading,
 }: {
   input: string;
   blurDataURL: string;
   data: DataProps;
-  loading: boolean
+  loading: boolean,
+  setLoading: (Value: boolean) => void,
 }) {
   const router = useRouter();
   const { id } = router.query;
@@ -38,7 +40,7 @@ export default function PhotoPage({
 
   useEffect(() => {
     if (data) {
-      loading = false;
+      setLoading(false);
     }
   }, [data]);
 
