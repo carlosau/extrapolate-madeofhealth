@@ -37,10 +37,10 @@ export default function PhotoPage({
   const { UploadModal, setShowUploadModal } = useUploadModal();
 
   useEffect(() => {
-    if (data!.output) {
+    if (data) {
       loading = false;
     }
-  }, [data!.output]);
+  }, [data]);
 
   console.log('Loading from [id]: ' + loading)
 
