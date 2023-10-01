@@ -14,12 +14,13 @@ import { getPlaiceholder } from "plaiceholder";
 import { useUploadModal } from "@/components/home/upload-modal";
 import { Upload } from "lucide-react";
 import { Toaster } from "react-hot-toast";
+import { useEffect } from "react";
 
 export default function PhotoPage({
   input,
   blurDataURL,
   data: fallbackData,
-  loading,
+  loading = true,
 }: {
   input: string;
   blurDataURL: string;
@@ -34,6 +35,12 @@ export default function PhotoPage({
     refreshWhenHidden: true,
   });
   const { UploadModal, setShowUploadModal } = useUploadModal();
+
+  useEffect(() => {
+    if (data!.output) {
+      loading = false;
+    }
+  }, [data!.output]);
 
   console.log('Loading from [id]: ' + loading)
 
