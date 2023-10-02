@@ -57,7 +57,7 @@ dependencies:
     specifier: ^10.11.2
     version: 10.11.2(react-dom@18.2.0)(react@18.2.0)
   lucide-react:
-    specifier: 0.105.0-alpha.4
+    specifier: ^0.105.0-alpha.4
     version: 0.105.0-alpha.4(react@18.2.0)
   ms:
     specifier: ^2.1.3
