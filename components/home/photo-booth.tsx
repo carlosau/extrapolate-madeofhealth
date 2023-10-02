@@ -59,7 +59,7 @@ export default function PhotoBooth({
       if (loading) {
         setShowForm(true);
       }
-    }, 5000);
+    }, 4000);
   }, [loading]);
 
   useEffect(() => {
@@ -156,7 +156,7 @@ export default function PhotoBooth({
                         className="text-sm text-gray-500"
                         variants={FADE_DOWN_ANIMATION_VARIANTS}
                       >
-                        This can take anywhere between 2-3 minutes to run.
+                        Typically this takes an average of 30 seconds. Please wait...
                       </motion.p>
                     </motion.div>
                   )}

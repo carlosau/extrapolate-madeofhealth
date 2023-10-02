@@ -11,10 +11,11 @@ import { FADE_DOWN_ANIMATION_VARIANTS } from "@/lib/constants";
 import PhotoBooth from "@/components/home/photo-booth";
 import { getPlaiceholder } from "plaiceholder";
 import { useUploadModal } from "@/components/home/upload-modal";
-import { Upload } from "lucide-react";
+import { Upload, Heart } from "lucide-react";
 import { Toaster } from "react-hot-toast";
 import { useState, useEffect, use } from "react";
 import { LoadingCircle } from "@/components/shared/icons";
+import Link from "next/link";
 
 export default function PhotoPage({
   input,
@@ -51,7 +52,7 @@ export default function PhotoPage({
         setShowFirstText(false);
         setShowSecondText(true);
       }
-    }, 8000);
+    }, 9000);
   }, [loadingId]);
 
   return (
@@ -101,7 +102,10 @@ export default function PhotoPage({
           </div>
         ) : (
           <div>
-            <p>Here is your product!</p>
+        <button className="flex items-center bg-lime-400 hover:shadow-md rounded-lg p-1 px-3 py-2 text-white space-x-2">
+        <Heart className="text-white animate-pulse" />
+          <Link href="https://confsistemas.com.br">Know your product!</Link>
+        </button>
           </div>
         )}
         {data?.expired ? (
