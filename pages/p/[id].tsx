@@ -11,7 +11,7 @@ import { FADE_DOWN_ANIMATION_VARIANTS } from "@/lib/constants";
 import PhotoBooth from "@/components/home/photo-booth";
 import { getPlaiceholder } from "plaiceholder";
 import { useUploadModal } from "@/components/home/upload-modal";
-import { Upload, Heart } from "lucide-react";
+import { Upload, Star } from "lucide-react";
 import { Toaster } from "react-hot-toast";
 import { useState, useEffect, use } from "react";
 import { LoadingCircle } from "@/components/shared/icons";
@@ -101,10 +101,10 @@ export default function PhotoPage({
 
           </div>
         ) : (
-          <div>
-        <button className="flex items-center bg-lime-400 hover:shadow-md rounded-lg p-1 px-3 py-2 text-white space-x-2">
-        <Heart className="text-white animate-pulse" />
-          <Link href="https://confsistemas.com.br">Know your product!</Link>
+          <div className="align-center flex flex-col items-center justify-center pt-6">
+        <button className="animate-bounce flex items-center bg-lime-400 hover:shadow-md rounded-lg p-1 px-3 py-2 text-white space-x-2">
+        <Star className="text-white animate-pulse" />
+          <Link href="https://confsistemas.com.br">Know your product</Link>
         </button>
           </div>
         )}
