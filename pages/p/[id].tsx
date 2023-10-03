@@ -102,7 +102,7 @@ export default function PhotoPage({
           </div>
         ) : (
           <div className="align-center flex flex-col items-center justify-center pt-6">
-            <div className="mt-2 mb-6 p-2">
+            <div className="mt-2 mb-6 p-2 text-center">
             <p>🌟 Good News! 🌟</p>
             <p>Here is a <b>recommended product</b> for your <b>skin health</b> with <b>anti-aging properties</b>.</p>
             </div>
@@ -110,7 +110,7 @@ export default function PhotoPage({
         <Star className="text-white animate-pulse" />
           <Link href="https://confsistemas.com.br"
                      target="_blank"
-          >Get your product</Link>
+          >Know your product</Link>
         </button>
         <small className="p-2">Extra text text text. etc.</small>
           </div>
@@ -124,12 +124,12 @@ export default function PhotoPage({
               Your photos have been deleted. Please upload a new photo.
             </p>
             <button
-              className="group mx-auto mt-6 flex max-w-fit items-center justify-center space-x-2 rounded-full border border-black bg-black px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black"
-              onClick={() => setShowUploadModal(true)}
-            >
-              <Upload className="h-5 w-5 text-white group-hover:text-black" />
-              <p>Upload another photo</p>
-            </button>
+            className="group mx-auto mt-6 flex max-w-fit items-center justify-center space-x-2 rounded-full bg-lime-400 px-5 py-2 text-sm text-white font-bold transition-colors hover:bg-lime-300 hover:text-black"
+            onClick={() => setShowUploadModal(true)}
+          >
+            <Upload className="animate-pulse h-5 w-5 text-white group-hover:text-black" />
+            <p>Upload another photo</p>
+          </button>
           </motion.div>
         ) : (
           <PhotoBooth
