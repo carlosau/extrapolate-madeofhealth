@@ -109,7 +109,7 @@ export default function PhotoPage({
                      target="_blank"
           >Get your product</Link>
         </button>
-        <small>Extra text text... etc.</small>
+        <small>Extra text text text. etc.</small>
           </div>
         )}
         {data?.expired ? (
