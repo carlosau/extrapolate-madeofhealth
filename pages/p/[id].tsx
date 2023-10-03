@@ -102,14 +102,17 @@ export default function PhotoPage({
           </div>
         ) : (
           <div className="align-center flex flex-col items-center justify-center pt-6">
-            <p>Good News! Here is a recommended product for your skin health with anti-aging properties.</p>
-        <button className="animate-pulse flex items-center bg-lime-400 hover:shadow-md rounded-lg p-1 px-3 py-2 text-white space-x-2">
-        <Star className="text-white" />
+            <div className="mt-2 mb-6 p-2">
+            <p>🌟 Good News! 🌟</p>
+            <p>Here is a <b>recommended product</b> for your <b>skin health</b> with <b>anti-aging properties</b>.</p>
+            </div>
+        <button className="flex items-center bg-lime-400 hover:bg-lime-500 font-bold shadow-md rounded-lg p-1 px-3 py-2 text-white space-x-2">
+        <Star className="text-white animate-pulse" />
           <Link href="https://confsistemas.com.br"
                      target="_blank"
           >Get your product</Link>
         </button>
-        <small>Extra text text text. etc.</small>
+        <small className="p-2">Extra text text text. etc.</small>
           </div>
         )}
         {data?.expired ? (
