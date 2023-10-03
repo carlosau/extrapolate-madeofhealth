@@ -108,7 +108,7 @@ export default function PhotoPage({
             </div>
         <button className="flex items-center bg-lime-400 hover:bg-lime-500 font-bold shadow-md rounded-lg p-1 px-3 py-2 text-white space-x-2">
         <Star className="text-white animate-pulse" />
-          <Link href="https://confsistemas.com.br"
+          <Link href="https://madeofhealth.com"
                      target="_blank"
           >Know your product</Link>
         </button>
