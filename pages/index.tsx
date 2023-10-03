@@ -35,14 +35,14 @@ export default function Home({ count }: { count: number }) {
           className="bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent drop-shadow-sm md:text-7xl md:leading-[5rem]"
           variants={FADE_DOWN_ANIMATION_VARIANTS}
         >
-          <Balancer>Are you taking care of your skin's health?</Balancer>
+          <Balancer>How will your facial skin look?</Balancer>
         </motion.h1>
         <motion.p
           className="mt-6 text-center text-gray-500 md:text-xl"
           variants={FADE_DOWN_ANIMATION_VARIANTS}
         >
           <Balancer ratio={0.6}>
-            Upload your photo, View the result below and discover a special product for your skin.{" "}
+            Upload your photo, view the results and discover a special product for your skin.{" "}
             {/*
             <Tooltip
               content={
@@ -62,10 +62,10 @@ export default function Home({ count }: { count: number }) {
         </motion.p>
         <motion.div variants={FADE_DOWN_ANIMATION_VARIANTS} className="-mb-4">
           <button
-            className="group mx-auto mt-6 flex max-w-fit items-center justify-center space-x-2 rounded-full border border-black bg-black px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black"
+            className="group mx-auto mt-6 flex max-w-fit items-center justify-center space-x-2 rounded-full bg-lime-400 px-5 py-2 text-sm text-white font-bold transition-colors hover:bg-lime-300 hover:text-black"
             onClick={() => setShowUploadModal(true)}
           >
-            <Upload className="h-5 w-5 text-white group-hover:text-black" />
+            <Upload className="animate-pulse h-5 w-5 text-white group-hover:text-black" />
             <p>Upload my photo</p>
           </button>
           <p className="collapse mt-6 text-center text-sm text-gray-500">

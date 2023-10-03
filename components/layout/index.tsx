@@ -33,7 +33,7 @@ export default function Layout({
         <div className="mx-5 flex h-16 max-w-screen-xl items-center justify-between xl:mx-auto">
           <Link href="/" className="flex items-center font-display text-2xl">
             <Image
-              src="/madeofhealth-logo.png"
+              src="/madeofhealth-logo.svg"
               alt="madeofhealth-logo"
               width="169"
               height="44"
@@ -41,6 +41,7 @@ export default function Layout({
             ></Image>
           </Link>
           <div className="flex items-center space-x-4">
+            {/*
             <a
               href="https://madeofhealth.com/products/skincare"
               target="_blank"
@@ -53,6 +54,7 @@ export default function Layout({
                 height={30}
               ></Image>
             </a>
+            */}
             {/*SOCIAL SHARE BUTTONS START*/}
             <Tooltip
               content={
@@ -85,6 +87,7 @@ export default function Layout({
       <div className="absolute w-full border-t border-gray-200 bg-white py-5 text-center">
         <p className="text-gray-500">
           © {new Date().getFullYear()}{" "}
+          {/*
           <a
             href="https://madeofhealth.com"
             target="_blank"
@@ -92,6 +95,10 @@ export default function Layout({
           >
             madeofhealth.com
           </a>
+            */}
+            <span>
+            madeofhealth.com
+            </span>
         </p>
       </div>
     </>

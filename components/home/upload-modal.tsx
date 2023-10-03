@@ -61,7 +61,7 @@ const UploadModal = ({
         <div className="flex flex-col items-center justify-center space-y-3 border-b border-gray-200 bg-white px-4 py-6 pt-8 text-center md:px-16">
           <Link href="/">
             <Image
-              src="/madeofhealth-logo-only.png"
+              src="/madeofhealth-logo-only.svg"
               alt="Logo"
               className=""
               width={35}
@@ -70,7 +70,7 @@ const UploadModal = ({
           </Link>
           <h3 className="font-display text-2xl font-bold">Upload your photo</h3>
           <p className="text-sm text-gray-500">
-          Your privacy guaranteed: We do not store photos. Your photo will be automatically removed minutes later.
+          Your privacy guaranteed: We do not store photos. Your photos will be automatically deleted after 24 hours.
           </p>
         </div>
 
@@ -95,7 +95,7 @@ const UploadModal = ({
         >
           <div>
             <div className="flex items-center justify-between">
-              <p className="block text-sm font-medium text-gray-700">Foto</p>
+              <p className="block text-sm font-medium text-gray-700">Photo</p>
               {fileSizeTooBig && (
                 <p className="text-sm text-red-500">
                   Size of the file is big (max 5MB)
