@@ -103,11 +103,8 @@ export default function PhotoPage({
       // Update randomProductLink state with the random link
       setRandomProductLink(randomLink);
 
-      // Store randomLink in a cookie
-    setCookie(null, "randomProductLink", randomLink, {
-      maxAge: 86400, // Set cookie expiration to 24 hours
-      path: "/", // Set the path where the cookie is available
-    });
+      // Store randomLink in localStorage
+    localStorage.setItem("randomProductLink", randomLink);
     }
 
     // Update the visit counter in cookies
@@ -118,11 +115,13 @@ export default function PhotoPage({
 
   }, [randomProductLink, productsLinks, visitCounter]);
 
-  const randomProductLinkStored = cookies.randomProductLink;
+  const randomProductLinkStored = localStorage.getItem("randomProductLink");
 
   console.log('visitCounter: ' + visitCounter)
   console.log('randomProductLinkStored: ' + randomProductLinkStored)
 
+  //data output check
+  console.log('data?.output: ' + data?.output)
 
   return (
     <Layout>
@@ -194,19 +193,7 @@ export default function PhotoPage({
               </div>
             ) : (
               <div className="flex flex-col justify-center align-center items-center">
-              <button className="animate-pulse flex items-center space-x-2 rounded-lg bg-lime-400 p-1 px-3 py-2 font-bold text-white shadow-md hover:bg-lime-500">
-                <ExternalLink className="animate-pulse text-white" />
-                {/*href link is from a random value of productsLinks object STORED IN THE COOKIE */}
-                <Link href={randomProductLinkStored} target="_blank">
-                  Know your product
-                </Link>
-              </button>
-              <div className="p-1">
-              <small>
-                (you will be directed to the manufacturer&apos;s official
-                website)
-              </small>
-              </div>
+              <p>{randomProductLinkStored}</p>
             </div>
             )}
           </div>
