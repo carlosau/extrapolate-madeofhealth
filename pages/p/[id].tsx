@@ -56,10 +56,10 @@ export default function PhotoPage({
   }, [loadingId]);
 
   const productsLinks = {
-    "dermaprime": "https://madeofhealth.com/skin-care/products/258b49oxufvey25cpdv-3luls9",
-    "bubnatural": "https://madeofhealth.com/skin-care/products/ae80e8i9yiu5w-x2yy-95k62z8",
-    "neotonics": "https://madeofhealth.com/skin-care/products/8a6aa4uyoejf12u7jc0mvfeq2c",
-    "biorest": "https://madeofhealth.com/skin-care/products/b66491kysii72-06yc445k2kbg",
+    "dermaprime": "https://madeofhealth.com/skin-care/products/dermaprime",
+    "bubnatural": "https://madeofhealth.com/skin-care/products/bubnatural",
+    "neotonics": "https://madeofhealth.com/skin-care/products/neotonics",
+    "biorest": "https://madeofhealth.com/skin-care/products/biorest",
 }
 
   return (
