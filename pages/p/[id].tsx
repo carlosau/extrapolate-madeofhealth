@@ -185,7 +185,7 @@ export default function PhotoPage({
                   </small>
                 </div>
               </div>
-              {/* EMAIL PART*/}
+              {/* EMAIL PART*
               <div className="text-center">
                 <div className="p-2 font-bold">
                   <p>
@@ -208,11 +208,8 @@ export default function PhotoPage({
                     <CornerDownRight className="animate-pulse text-white" />
                   </button>
                 </div>
-              </div>
-              ) : (
-              <div >
-              </div>
-              )
+             </div>
+            */}
             </div>
           )
         )}
