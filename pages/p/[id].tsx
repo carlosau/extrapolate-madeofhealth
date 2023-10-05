@@ -84,9 +84,12 @@ export default function PhotoPage({
     null,
   );
 
+    // State to track whether useEffect has run
+    const [useEffectHasRun, setUseEffectHasRun] = useState(false);
+
   useEffect(() => {
     // Check if randomProductLink is null
-    if (randomProductLink === null && data) {
+    if (randomProductLink === null && data && !useEffectHasRun) {
       // Generate a random key from productsLinks
       const productKeys = Object.keys(productsLinks);
       const randomProductKey =
@@ -97,8 +100,11 @@ export default function PhotoPage({
 
       // Update randomProductLink state with the random link
       setRandomProductLink(randomLink);
+
+       // Set useEffectHasRun to true to prevent further runs
+       setUseEffectHasRun(true);
     }
-  }, [randomProductLink, productsLinks, data]);
+  }, [randomProductLink, productsLinks, data, useEffectHasRun]);
 
   return (
     <Layout>
