@@ -98,7 +98,7 @@ export default function PhotoPage({
       // Update randomProductLink state with the random link
       setRandomProductLink(randomLink);
     }
-  }, [randomProductLink, productsLinks]);
+  }, [randomProductLink, productsLinks, data]);
 
   return (
     <Layout>
