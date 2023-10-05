@@ -84,8 +84,9 @@ export default function PhotoPage({
     null,
   );
 
-    // Visit counter state
-  const [visitCounter, setVisitCounter] = useState(0);
+  // Visit counter state from localStorage
+  const storedVisitCounter = parseInt(localStorage.getItem("visitCounter") || "0", 10);
+  const [visitCounter, setVisitCounter] = useState(storedVisitCounter);
 
   useEffect(() => {
     // Check if randomProductLink is null
@@ -106,6 +107,8 @@ export default function PhotoPage({
   useEffect(() => {
     // Increase visit counter when the component mounts
     setVisitCounter((prevCounter) => prevCounter + 1);
+    // Store visit counter in localStorage
+    localStorage.setItem("visitCounter", (visitCounter + 1).toString());
   }, []);
 
   console.log('visitCounter: ' + visitCounter)
