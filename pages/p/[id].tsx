@@ -44,8 +44,8 @@ export default function PhotoPage({
   }, [data?.output]);
 
   //times to show texts
-  const [showFirstText, setShowFirstText] = useState(true)
-  const [showSecondText, setShowSecondText] = useState(false)
+  const [showFirstText, setShowFirstText] = useState(true);
+  const [showSecondText, setShowSecondText] = useState(false);
   useEffect(() => {
     setTimeout(() => {
       if (loadingId) {
@@ -58,39 +58,47 @@ export default function PhotoPage({
   const productsLinks: {
     [key: string]: string; // Add an index signature
   } = {
-    dermaprime: "https://258b49oxufvey25cpdv-3luls9.hop.clickbank.net/?tid=dermaprima_facebook_tid",
-    bubnatural: "https://ae80e8i9yiu5w-x2yy-95k62z8.hop.clickbank.net/?tid=bubsnaturals_fb_tid",
-    neotonics: "https://8a6aa4uyoejf12u7jc0mvfeq2c.hop.clickbank.net/?tid=neotonics_fb_tid",
-    biorest: "https://b66491kysii72-06yc445k2kbg.hop.clickbank.net/?tid=biorest_fb_tid",
+    dermaprime:
+      "https://258b49oxufvey25cpdv-3luls9.hop.clickbank.net/?tid=dermaprima_facebook_tid",
+    bubnatural:
+      "https://ae80e8i9yiu5w-x2yy-95k62z8.hop.clickbank.net/?tid=bubsnaturals_fb_tid",
+    neotonics:
+      "https://8a6aa4uyoejf12u7jc0mvfeq2c.hop.clickbank.net/?tid=neotonics_fb_tid",
+    biorest:
+      "https://b66491kysii72-06yc445k2kbg.hop.clickbank.net/?tid=biorest_fb_tid",
   };
 
-  {/* phase 2 improvements(powered with VSL page): 
+  {
+    /* phase 2 improvements(powered with VSL page): 
   const productsLinks = {
     "dermaprime": "https://madeofhealth.com/skin-care/products/dermaprime",
     "bubnatural": "https://madeofhealth.com/skin-care/products/bubnatural",
     "neotonics": "https://madeofhealth.com/skin-care/products/neotonics",
     "biorest": "https://madeofhealth.com/skin-care/products/biorest",
 }
-*/}
-
-// Random link state with initial value of null
-const [randomProductLink, setRandomProductLink] = useState<string | null>(null);
-
-useEffect(() => {
-  // Check if randomProductLink is null
-  if (randomProductLink === null) {
-    // Generate a random key from productsLinks
-    const productKeys = Object.keys(productsLinks);
-    const randomProductKey =
-      productKeys[Math.floor(Math.random() * productKeys.length)];
-
-    // Get the random link from productsLinks
-    const randomLink = productsLinks[randomProductKey];
-
-    // Update randomProductLink state with the random link
-    setRandomProductLink(randomLink);
+*/
   }
-}, [randomProductLink, productsLinks]);
+
+  // Random link state with initial value of null
+  const [randomProductLink, setRandomProductLink] = useState<string | null>(
+    null,
+  );
+
+  useEffect(() => {
+    // Check if randomProductLink is null
+    if (randomProductLink === null) {
+      // Generate a random key from productsLinks
+      const productKeys = Object.keys(productsLinks);
+      const randomProductKey =
+        productKeys[Math.floor(Math.random() * productKeys.length)];
+
+      // Get the random link from productsLinks
+      const randomLink = productsLinks[randomProductKey];
+
+      // Update randomProductLink state with the random link
+      setRandomProductLink(randomLink);
+    }
+  }, [randomProductLink, productsLinks]);
 
   return (
     <Layout>
@@ -119,41 +127,47 @@ useEffect(() => {
         </motion.h1>
         {!data?.expired && loadingId ? (
           <div className="align-center flex flex-col items-center justify-center">
-
             {/* First text while loading */}
             {showFirstText && (
-            <div className="align-center flex flex-col items-center justify-center pt-6">
-              <LoadingCircle />
-              <p className="p-4">Analyzing your skin...</p>
-            </div>
+              <div className="align-center flex flex-col items-center justify-center pt-6">
+                <LoadingCircle />
+                <p className="p-4">Analyzing your skin...</p>
+              </div>
             )}
 
             {/* Second text while loading */}
-            {showSecondText&& (
-            <div className="align-center flex flex-col items-center justify-center pt-6">
-              <LoadingCircle />
-              <p className="p-4">Choosing one great product for you...</p>
-            </div>
+            {showSecondText && (
+              <div className="align-center flex flex-col items-center justify-center pt-6">
+                <LoadingCircle />
+                <p className="p-4">Choosing one great product for you...</p>
+              </div>
             )}
-
           </div>
         ) : (
           <div className="align-center flex flex-col items-center justify-center pt-6">
-            <div className="mt-2 mb-6 p-2 text-center">
-            <p>🌟 Good News! 🌟</p>
-            <p>Here is a <b>recommended product</b> for your <b>skin health</b> with <b>anti-aging properties</b>.</p>
+            <div className="mb-6 mt-2 p-2 text-center">
+              <p>🌟 Good News! 🌟</p>
+              <p>
+                Here is a <b>recommended product</b> for your <b>skin health</b>{" "}
+                with <b>anti-aging properties</b>.
+              </p>
             </div>
             {randomProductLink && (
-        <button className="animate-bounce flex items-center bg-lime-400 hover:bg-lime-500 font-bold shadow-md rounded-lg p-1 px-3 py-2 text-white space-x-2">
-        <ExternalLink className="text-white animate-pulse" />
-          {/*href link is from a random value of productsLinks object. */}
-          <Link href={randomProductLink}
-                     target="_blank"
-          >Know your product</Link>
-          <div>
-          <small>(you will be directed to the manufacturer&apos;s official website)</small>
-          </div>
-        </button>
+              <div>
+                <button className="flex items-center space-x-2 rounded-lg bg-lime-400 p-1 px-3 py-2 font-bold text-white shadow-md hover:bg-lime-500">
+                  <ExternalLink className="animate-pulse text-white" />
+                  {/*href link is from a random value of productsLinks object. */}
+                  <Link href={randomProductLink} target="_blank">
+                    Know your product
+                  </Link>
+                </button>
+                <div>
+                <small>
+                  (you will be directed to the manufacturer&apos;s official
+                  website)
+                </small>
+                </div>
+              </div>
             )}
           </div>
         )}
@@ -166,12 +180,12 @@ useEffect(() => {
               Your photos have been deleted. Please upload a new photo.
             </p>
             <button
-            className="group mx-auto mt-6 flex max-w-fit items-center justify-center space-x-2 rounded-full bg-lime-400 px-5 py-2 text-sm text-white font-bold transition-colors hover:bg-lime-300 hover:text-black"
-            onClick={() => setShowUploadModal(true)}
-          >
-            <Upload className="animate-pulse h-5 w-5 text-white group-hover:text-black" />
-            <p>Upload another photo</p>
-          </button>
+              className="group mx-auto mt-6 flex max-w-fit items-center justify-center space-x-2 rounded-full bg-lime-400 px-5 py-2 text-sm font-bold text-white transition-colors hover:bg-lime-300 hover:text-black"
+              onClick={() => setShowUploadModal(true)}
+            >
+              <Upload className="h-5 w-5 animate-pulse text-white group-hover:text-black" />
+              <p>Upload another photo</p>
+            </button>
           </motion.div>
         ) : (
           <PhotoBooth
