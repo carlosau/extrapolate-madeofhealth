@@ -102,9 +102,6 @@ export default function PhotoPage({
 
       // Update randomProductLink state with the random link
       setRandomProductLink(randomLink);
-
-      // Store randomLink in localStorage
-    localStorage.setItem("randomProductLink", randomLink);
     }
 
     // Update the visit counter in cookies
@@ -115,10 +112,8 @@ export default function PhotoPage({
 
   }, [randomProductLink, productsLinks, visitCounter]);
 
-  const randomProductLinkStored = localStorage.getItem("randomProductLink");
 
   console.log('visitCounter: ' + visitCounter)
-  console.log('randomProductLinkStored: ' + randomProductLinkStored)
 
   //data output check
   console.log('data?.output: ' + data?.output)
@@ -193,7 +188,7 @@ export default function PhotoPage({
               </div>
             ) : (
               <div className="flex flex-col justify-center align-center items-center">
-              <p>{randomProductLinkStored}</p>
+              <p>randomProductLinkStored</p>
             </div>
             )}
           </div>
