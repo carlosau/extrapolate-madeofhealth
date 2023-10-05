@@ -108,6 +108,8 @@ export default function PhotoPage({
     setVisitCounter((prevCounter) => prevCounter + 1);
   }, []);
 
+  console.log('visitCounter: ' + visitCounter)
+
   return (
     <Layout>
       <Toaster />
