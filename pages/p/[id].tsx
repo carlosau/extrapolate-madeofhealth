@@ -143,7 +143,7 @@ export default function PhotoPage({
               </div>
             )}
           </div>
-        ) : (
+        ) : (!data?.expired && (
           <div className="align-center flex flex-col items-center justify-center pt-6">
             <div className="mb-6 mt-2 p-2 text-center">
               <p>🌟 Good News! 🌟</p>
@@ -153,7 +153,7 @@ export default function PhotoPage({
               </p>
             </div>
             {randomProductLink && (
-              <div>
+              <div className="flex justify-center align-center items-center">
                 <button className="flex items-center space-x-2 rounded-lg bg-lime-400 p-1 px-3 py-2 font-bold text-white shadow-md hover:bg-lime-500">
                   <ExternalLink className="animate-pulse text-white" />
                   {/*href link is from a random value of productsLinks object. */}
@@ -170,6 +170,7 @@ export default function PhotoPage({
               </div>
             )}
           </div>
+            )
         )}
         {data?.expired ? (
           <motion.div
