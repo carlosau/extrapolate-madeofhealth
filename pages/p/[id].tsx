@@ -52,7 +52,7 @@ export default function PhotoPage({
         setShowFirstText(false);
         setShowSecondText(true);
       }
-    }, 9000);
+    }, 10000);
   }, [loadingId]);
 
   const productsLinks: {
@@ -84,12 +84,12 @@ export default function PhotoPage({
     null,
   );
 
-    // State to track whether useEffect has run
-    const [useEffectHasRun, setUseEffectHasRun] = useState(false);
+    // Visit counter state
+  const [visitCounter, setVisitCounter] = useState(0);
 
   useEffect(() => {
     // Check if randomProductLink is null
-    if (randomProductLink === null && !useEffectHasRun) {
+    if (randomProductLink === null && visitCounter === 1) {
       // Generate a random key from productsLinks
       const productKeys = Object.keys(productsLinks);
       const randomProductKey =
@@ -100,11 +100,13 @@ export default function PhotoPage({
 
       // Update randomProductLink state with the random link
       setRandomProductLink(randomLink);
-
-       // Set useEffectHasRun to true to prevent further runs
-       setUseEffectHasRun(true);
     }
-  }, [randomProductLink, productsLinks, useEffectHasRun]);
+  }, [randomProductLink, productsLinks, visitCounter]);
+
+  useEffect(() => {
+    // Increase visit counter when the component mounts
+    setVisitCounter((prevCounter) => prevCounter + 1);
+  }, []);
 
   return (
     <Layout>
