@@ -85,13 +85,13 @@ export default function PhotoPage({
     null,
   );
 
-  // Check for the visit counter in cookies
-  const cookies = parseCookies(); // Parse cookies
-  const visitCounter = parseInt(cookies.visitCounter || "0", 10); // Get visit counter from cookies
+  // // Check for the visit counter in cookies
+  // const cookies = parseCookies(); // Parse cookies
+  // const visitCounter = parseInt(cookies.visitCounter || "0", 10); // Get visit counter from cookies
 
   useEffect(() => {
     // Check if randomProductLink is null
-    if (randomProductLink === null && visitCounter === 1) {
+    if (randomProductLink === null) {
       // Generate a random key from productsLinks
       const productKeys = Object.keys(productsLinks);
       const randomProductKey =
@@ -104,14 +104,14 @@ export default function PhotoPage({
       setRandomProductLink(randomLink);
     }
 
-    // Update the visit counter in cookies
-    setCookie(null, "visitCounter", String(visitCounter + 1), {
-      maxAge: 86400, // Set cookie expiration to 24 hours
-      path: "/", // Set the path where the cookie is available
-    });
-  }, [randomProductLink, productsLinks, visitCounter]);
+    // // Update the visit counter in cookies
+    // setCookie(null, "visitCounter", String(visitCounter + 1), {
+    //   maxAge: 86400, // Set cookie expiration to 24 hours
+    //   path: "/", // Set the path where the cookie is available
+    // });
+  }, [randomProductLink, productsLinks]);
 
-  console.log("visitCounter: " + visitCounter);
+  // console.log("visitCounter: " + visitCounter);
 
   //data output check
   console.log("data?.output: " + data?.output);
@@ -160,59 +160,59 @@ export default function PhotoPage({
             )}
           </div>
         ) : (
-          !data?.expired && (
+          !data?.expired &&
+          randomProductLink && (
             <div className="align-center flex flex-col items-center justify-center pt-6">
               <div className="mb-6 mt-2 p-2 text-center">
                 <p>🌟 Good News! 🌟</p>
                 <p>
-                  Here is a <b>recommended product</b> for your{" "}
+                  We&apos;ve found a <b>recommended product</b> for your{" "}
                   <b>skin health</b> with <b>anti-aging properties</b>.
                 </p>
               </div>
-              {randomProductLink ? (
-                <div className="align-center flex flex-col items-center justify-center">
+              <div className="align-center flex flex-col items-center justify-center">
+                <button className="flex animate-pulse items-center space-x-2 rounded-lg bg-lime-400 p-1 px-3 py-2 font-bold text-white shadow-md hover:bg-lime-500">
+                  <ExternalLink className="animate-pulse text-white" />
+                  {/*href link is from a random value of productsLinks object. */}
+                  <Link href={randomProductLink} target="_blank">
+                    Know your product
+                  </Link>
+                </button>
+                <div className="p-1">
+                  <small>
+                    (you will be directed to the manufacturer&apos;s official
+                    website)
+                  </small>
+                </div>
+              </div>
+              {/* EMAIL PART*/}
+              <div className="text-center">
+                <div className="p-2 font-bold">
+                  <p>
+                    Receive in your e-mail a special collection of the best
+                    recommended products
+                  </p>
+                  <small>
+                    Based in your results we will send no more than 5 products.
+                  </small>
+                </div>
+                <div className="align-center flex flex-row items-center justify-center">
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="your e-mail here"
+                    className="rounded-md"
+                  />
                   <button className="flex animate-pulse items-center space-x-2 rounded-lg bg-lime-400 p-1 px-3 py-2 font-bold text-white shadow-md hover:bg-lime-500">
-                    <ExternalLink className="animate-pulse text-white" />
-                    {/*href link is from a random value of productsLinks object. */}
-                    <Link href={randomProductLink} target="_blank">
-                      Know your product
-                    </Link>
+                    <CornerDownRight className="animate-pulse text-white" />
                   </button>
-                  <div className="p-1">
-                    <small>
-                      (you will be directed to the manufacturer&apos;s official
-                      website)
-                    </small>
-                  </div>
                 </div>
+              </div>
               ) : (
-                <div className="align-center flex flex-col items-center justify-center">
-                  <div className="text-center">
-                    <div className="font-bold p-2">
-                        <p>
-                            Receive in your e-mail a special collection of the best
-                            recommended products
-                          </p>
-                          <small>
-                            Based in your results we will send no more than 5 products.
-                          </small>
-                    </div>
-                      <div className="flex flex-row">
-                          <input
-                            type="email"
-                            name="email"
-                            id="email"
-                            placeholder="your e-mail here"
-                            className="rounded-md"
-                          />
-                          <button className="flex animate-pulse items-center space-x-2 rounded-lg bg-lime-400 p-1 px-3 py-2 font-bold text-white shadow-md hover:bg-lime-500">
-                            <CornerDownRight className="animate-pulse text-white" />
-                          </button>
-                      </div>
-
-                  </div>
-                </div>
-              )}
+              <div >
+              </div>
+              )
             </div>
           )
         )}

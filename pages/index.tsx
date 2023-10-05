@@ -44,7 +44,7 @@ export default function Home({ count }: { count: number }) {
           <Balancer ratio={0.6}>
             Upload your photo, view the results and discover a special product¹ for your skin.{" "}
             <div>
-            <small>1. All recommended products are backed by scientific research and are available for purchase on their manufacturers' official website. You will have access to the link to purchase on the next pages. We do not manufacture any of these products, we only recommend them.
+            <small>1. All recommended products are backed by scientific research and are available for purchase on their manufacturers' official website. After results, you'll have access to the official manufacture website. We do not manufacture any of these products, we only recommend them.
             </small>
             </div>
             {/*
