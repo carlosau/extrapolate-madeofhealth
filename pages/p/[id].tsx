@@ -175,7 +175,7 @@ export default function PhotoPage({
                     Know your product
                   </Link>
                 </button>
-                <div>
+                <div className="p-1">
                 <small>
                   (you will be directed to the manufacturer&apos;s official
                   website)
