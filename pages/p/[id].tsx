@@ -11,7 +11,7 @@ import { FADE_DOWN_ANIMATION_VARIANTS } from "@/lib/constants";
 import PhotoBooth from "@/components/home/photo-booth";
 import { getPlaiceholder } from "plaiceholder";
 import { useUploadModal } from "@/components/home/upload-modal";
-import { Upload, ExternalLink } from "lucide-react";
+import { Upload, ExternalLink, CornerDownRight } from "lucide-react";
 import { Toaster } from "react-hot-toast";
 import { useState, useEffect, use } from "react";
 import { LoadingCircle } from "@/components/shared/icons";
@@ -109,14 +109,12 @@ export default function PhotoPage({
       maxAge: 86400, // Set cookie expiration to 24 hours
       path: "/", // Set the path where the cookie is available
     });
-
   }, [randomProductLink, productsLinks, visitCounter]);
 
-
-  console.log('visitCounter: ' + visitCounter)
+  console.log("visitCounter: " + visitCounter);
 
   //data output check
-  console.log('data?.output: ' + data?.output)
+  console.log("data?.output: " + data?.output);
 
   return (
     <Layout>
@@ -161,38 +159,55 @@ export default function PhotoPage({
               </div>
             )}
           </div>
-        ) : (!data?.expired && (
-          <div className="align-center flex flex-col items-center justify-center pt-6">
-            <div className="mb-6 mt-2 p-2 text-center">
-              <p>🌟 Good News! 🌟</p>
-              <p>
-                Here is a <b>recommended product</b> for your <b>skin health</b>{" "}
-                with <b>anti-aging properties</b>.
-              </p>
-            </div>
-            {randomProductLink ? (
-              <div className="flex flex-col justify-center align-center items-center">
-                <button className="animate-pulse flex items-center space-x-2 rounded-lg bg-lime-400 p-1 px-3 py-2 font-bold text-white shadow-md hover:bg-lime-500">
-                  <ExternalLink className="animate-pulse text-white" />
-                  {/*href link is from a random value of productsLinks object. */}
-                  <Link href={randomProductLink} target="_blank">
-                    Know your product
-                  </Link>
-                </button>
-                <div className="p-1">
-                <small>
-                  (you will be directed to the manufacturer&apos;s official
-                  website)
-                </small>
-                </div>
+        ) : (
+          !data?.expired && (
+            <div className="align-center flex flex-col items-center justify-center pt-6">
+              <div className="mb-6 mt-2 p-2 text-center">
+                <p>🌟 Good News! 🌟</p>
+                <p>
+                  Here is a <b>recommended product</b> for your{" "}
+                  <b>skin health</b> with <b>anti-aging properties</b>.
+                </p>
               </div>
-            ) : (
-              <div className="flex flex-col justify-center align-center items-center">
-              <p>randomProductLinkStored</p>
+              {randomProductLink ? (
+                <div className="align-center flex flex-col items-center justify-center">
+                  <button className="flex animate-pulse items-center space-x-2 rounded-lg bg-lime-400 p-1 px-3 py-2 font-bold text-white shadow-md hover:bg-lime-500">
+                    <ExternalLink className="animate-pulse text-white" />
+                    {/*href link is from a random value of productsLinks object. */}
+                    <Link href={randomProductLink} target="_blank">
+                      Know your product
+                    </Link>
+                  </button>
+                  <div className="p-1">
+                    <small>
+                      (you will be directed to the manufacturer&apos;s official
+                      website)
+                    </small>
+                  </div>
+                </div>
+              ) : (
+                <div className="align-center flex flex-col items-center justify-center">
+                  <p>
+                    Receive in your e-mail a special collection of the best
+                    recommended products
+                  </p>
+                  <small>
+                    Based in your results we will send no more than 5 products.
+                  </small>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="your e-mail here"
+                  />
+                  <button className="flex animate-pulse items-center space-x-2 rounded-lg bg-lime-400 p-1 px-3 py-2 font-bold text-white shadow-md hover:bg-lime-500">
+                    <CornerDownRight className="animate-pulse text-white" />
+                    submit
+                  </button>
+                </div>
+              )}
             </div>
-            )}
-          </div>
-            )
+          )
         )}
         {data?.expired ? (
           <motion.div
