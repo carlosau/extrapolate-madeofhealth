@@ -86,7 +86,7 @@ export default function PhotoPage({
 
   useEffect(() => {
     // Check if randomProductLink is null
-    if (randomProductLink === null) {
+    if (randomProductLink === null && data) {
       // Generate a random key from productsLinks
       const productKeys = Object.keys(productsLinks);
       const randomProductKey =
@@ -153,7 +153,7 @@ export default function PhotoPage({
               </p>
             </div>
             {randomProductLink && (
-              <div className="flex justify-center align-center items-center">
+              <div className="flex flex-col justify-center align-center items-center">
                 <button className="flex items-center space-x-2 rounded-lg bg-lime-400 p-1 px-3 py-2 font-bold text-white shadow-md hover:bg-lime-500">
                   <ExternalLink className="animate-pulse text-white" />
                   {/*href link is from a random value of productsLinks object. */}
