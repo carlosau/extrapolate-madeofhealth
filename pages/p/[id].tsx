@@ -187,23 +187,30 @@ export default function PhotoPage({
                 </div>
               ) : (
                 <div className="align-center flex flex-col items-center justify-center">
-                  <p>
-                    Receive in your e-mail a special collection of the best
-                    recommended products
-                  </p>
-                  <small>
-                    Based in your results we will send no more than 5 products.
-                  </small>
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="your e-mail here"
-                  />
-                  <button className="flex animate-pulse items-center space-x-2 rounded-lg bg-lime-400 p-1 px-3 py-2 font-bold text-white shadow-md hover:bg-lime-500">
-                    <CornerDownRight className="animate-pulse text-white" />
-                    submit
-                  </button>
+                  <div className="text-center">
+                    <div className="font-bold p-2">
+                        <p>
+                            Receive in your e-mail a special collection of the best
+                            recommended products
+                          </p>
+                          <small>
+                            Based in your results we will send no more than 5 products.
+                          </small>
+                    </div>
+                      <div className="flex flex-row">
+                          <input
+                            type="email"
+                            name="email"
+                            id="email"
+                            placeholder="your e-mail here"
+                            className="rounded-md"
+                          />
+                          <button className="flex animate-pulse items-center space-x-2 rounded-lg bg-lime-400 p-1 px-3 py-2 font-bold text-white shadow-md hover:bg-lime-500">
+                            <CornerDownRight className="animate-pulse text-white" />
+                          </button>
+                      </div>
+
+                  </div>
                 </div>
               )}
             </div>
