@@ -42,7 +42,9 @@ export default function Home({ count }: { count: number }) {
           variants={FADE_DOWN_ANIMATION_VARIANTS}
         >
           <Balancer ratio={0.6}>
-            Upload your photo, view the results and discover a special product for your skin.{" "}
+            Upload your photo, view the results and discover a special product¹ for your skin.{" "}
+            <small>1. All recommended products are backed by scientific research and are available for purchase on their manufacturers' official website. You will have access to the link to purchase on the next pages. We do not manufacture any of these products, we only recommend them.
+            </small>
             {/*
             <Tooltip
               content={

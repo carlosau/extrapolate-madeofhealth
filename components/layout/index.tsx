@@ -5,6 +5,7 @@ import useScroll from "@/lib/hooks/use-scroll";
 import Meta from "./meta";
 import { WhatsappIcon, WhatsappShareButton } from "react-share";
 import Tooltip from "@/components/shared/tooltip";
+import { useRouter } from "next/router";
 
 export default function Layout({
   meta,
@@ -18,6 +19,11 @@ export default function Layout({
   children: ReactNode;
 }) {
   const scrolled = useScroll(50);
+
+  const router = useRouter()
+  const actualRouter = router.asPath
+  const siteUrl = 'myskin.madeofhealth.com'
+  const fullHref = `https://${siteUrl}${actualRouter}`
 
   return (
     <>
@@ -60,7 +66,7 @@ export default function Layout({
               content={
                 <div className="items-center justify-center align-center text-center p-3">
                   <WhatsappShareButton
-                    url="https://myskin.madeofhealth.com"
+                    url={fullHref}
                     title="Look how nice it is! Simulate your future appearance!"
                     separator=": "
                   >

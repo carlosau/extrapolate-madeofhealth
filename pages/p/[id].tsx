@@ -55,6 +55,13 @@ export default function PhotoPage({
     }, 9000);
   }, [loadingId]);
 
+  const productsLinks = {
+    "dermaprime": "https://madeofhealth.com/skin-care/products/258b49oxufvey25cpdv-3luls9",
+    "bubnatural": "https://madeofhealth.com/skin-care/products/ae80e8i9yiu5w-x2yy-95k62z8",
+    "neotonics": "https://madeofhealth.com/skin-care/products/8a6aa4uyoejf12u7jc0mvfeq2c",
+    "biorest": "https://madeofhealth.com/skin-care/products/b66491kysii72-06yc445k2kbg",
+}
+
   return (
     <Layout>
       <Toaster />
@@ -108,7 +115,8 @@ export default function PhotoPage({
             </div>
         <button className="flex items-center bg-lime-400 hover:bg-lime-500 font-bold shadow-md rounded-lg p-1 px-3 py-2 text-white space-x-2">
         <Star className="text-white animate-pulse" />
-          <Link href="https://madeofhealth.com"
+          {/*href link is from a random value of productsLinks object. */}
+          <Link href=""
                      target="_blank"
           >Know your product</Link>
         </button>
