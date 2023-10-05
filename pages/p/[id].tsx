@@ -16,6 +16,7 @@ import { Toaster } from "react-hot-toast";
 import { useState, useEffect, use } from "react";
 import { LoadingCircle } from "@/components/shared/icons";
 import Link from "next/link";
+import { setCookie, parseCookies } from "nookies"; // Import nookies library
 
 export default function PhotoPage({
   input,
@@ -84,9 +85,9 @@ export default function PhotoPage({
     null,
   );
 
-  // Visit counter state from localStorage
-  const storedVisitCounter = parseInt(localStorage.getItem("visitCounter") || "0", 10);
-  const [visitCounter, setVisitCounter] = useState(storedVisitCounter);
+  // Check for the visit counter in cookies
+  const cookies = parseCookies(); // Parse cookies
+  const visitCounter = parseInt(cookies.visitCounter || "0", 10); // Get visit counter from cookies
 
   useEffect(() => {
     // Check if randomProductLink is null
@@ -102,14 +103,14 @@ export default function PhotoPage({
       // Update randomProductLink state with the random link
       setRandomProductLink(randomLink);
     }
-  }, [randomProductLink, productsLinks, visitCounter]);
 
-  useEffect(() => {
-    // Increase visit counter when the component mounts
-    setVisitCounter((prevCounter) => prevCounter + 1);
-    // Store visit counter in localStorage
-    localStorage.setItem("visitCounter", (visitCounter + 1).toString());
-  }, []);
+    // Update the visit counter in cookies
+    setCookie(null, "visitCounter", String(visitCounter + 1), {
+      maxAge: 86400, // Set cookie expiration to 24 hours
+      path: "/", // Set the path where the cookie is available
+    });
+
+  }, [randomProductLink, productsLinks, visitCounter]);
 
   console.log('visitCounter: ' + visitCounter)
 
