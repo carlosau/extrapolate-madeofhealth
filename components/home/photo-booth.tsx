@@ -156,7 +156,7 @@ export default function PhotoBooth({
                         className="text-sm text-gray-500"
                         variants={FADE_DOWN_ANIMATION_VARIANTS}
                       >
-                        Typically this takes an average of 30 seconds. Please wait...
+                        Typically this takes an average of 45 seconds. Please wait...
                       </motion.p>
                     </motion.div>
                   )}
