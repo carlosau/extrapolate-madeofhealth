@@ -8,6 +8,7 @@ import PhotoBooth from "@/components/home/photo-booth";
 import { redis } from "@/lib/upstash";
 import Tooltip from "@/components/shared/tooltip";
 import { nFormatter } from "@/lib/utils";
+import CookieConsent from "react-cookie-consent"; // Import the CookieConsent component
 
 
 export default function Home({ count }: { count: number }) {
@@ -16,6 +17,23 @@ export default function Home({ count }: { count: number }) {
   return (
     <Layout>
       <UploadModal />
+      <CookieConsent
+        location="bottom"
+        buttonText="Accept"
+        cookieName="myCookieConsent" // Change to a unique name for your cookies
+        style={{ background: "#bcbcbc" }}
+        buttonStyle={{ background: "#A3E634", color: "#fff", fontSize: "15px", fontWeight: "400", borderRadius: "20px" }}
+      >
+      
+        We use cookies to enhance your experience.{" "}
+        <span style={{ fontWeight: "bold" }}>
+          We don&apos;t store, use, sell or share user&apos;s photos; they are automatically deleted hours after the upload as described in our Privacy Notice.
+        </span>{" "}
+        By clicking "Accept," you agree to our use of cookies and our{" "}
+        <a href="#">Cookies Policy</a> and{" "}
+        <a href="#">Privacy Notice</a>.
+      
+      </CookieConsent>
       <motion.div
         className="z-10 max-w-2xl px-5 xl:px-0"
         initial="hidden"
@@ -44,7 +62,7 @@ export default function Home({ count }: { count: number }) {
           <Balancer ratio={0.6}>
             Upload your photo, view the results and discover a special product¹ for your skin.{" "}
             <div>
-            <small>1. All recommended products are backed by scientific research and are available for purchase on their manufacturers' official website. After results, you'll have access to the official manufacture website. We do not manufacture any of these products, we only recommend them.
+            <small>1. All recommended products are backed by scientific research and are available for purchase on their manufacturers' official website. After results, you'll have access to the official manufacture website. We don&apos;t manufacture any of these products, we only recommend them.
             </small>
             </div>
             {/*
