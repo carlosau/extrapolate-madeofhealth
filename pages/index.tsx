@@ -6,7 +6,7 @@ import { useUploadModal } from "@/components/home/upload-modal";
 import { Upload, Heart } from "lucide-react";
 import PhotoBooth from "@/components/home/photo-booth";
 import { redis } from "@/lib/upstash";
-import Tooltip from "@/components/shared/tooltip";
+//import Tooltip from "@/components/shared/tooltip";
 import { nFormatter } from "@/lib/utils";
 import CookieConsent from "react-cookie-consent"; // Import the CookieConsent component
 
@@ -30,8 +30,8 @@ export default function Home({ count }: { count: number }) {
           We don&apos;t store, use, sell or share user&apos;s photos; they are automatically deleted hours after the upload as described in our Privacy Notice.
         </span>{" "}
         By clicking "Accept," you agree to our use of cookies and our{" "}
-        <a href="#">Cookies Policy</a> and{" "}
-        <a href="#">Privacy Notice</a>.
+        <a href="/cookies-policy">Cookies Policy</a> and{" "}
+        <a href="/privacy-notice">Privacy Notice</a>.
       
       </CookieConsent>
       <motion.div
@@ -99,13 +99,6 @@ export default function Home({ count }: { count: number }) {
           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAIAAAA7ljmRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAMklEQVR4nAEnANj/ALjj/4mIh+P+/9Lv/wCn0+xeLxV9cWWUtL0AUz0tKQAAeVU0j4d/y2cTsDiuaawAAAAASUVORK5CYII="
           output={`${process.env.NEXT_PUBLIC_CLOUDFLARE_WORKER}/output.gif`}
         />
-        {/*Old way
-        <PhotoBooth
-          input={`${process.env.NEXT_PUBLIC_CLOUDFLARE_WORKER}/input.webp`}
-          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAIAAAA7ljmRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAMklEQVR4nAEnANj/ALjj/4mIh+P+/9Lv/wCn0+xeLxV9cWWUtL0AUz0tKQAAeVU0j4d/y2cTsDiuaawAAAAASUVORK5CYII="
-          output={`${process.env.NEXT_PUBLIC_CLOUDFLARE_WORKER}/output.gif`}
-        />
-        */}
       </motion.div>
     </Layout>
   );

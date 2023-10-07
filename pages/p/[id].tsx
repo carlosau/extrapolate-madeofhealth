@@ -171,11 +171,11 @@ export default function PhotoPage({
                 </p>
               </div>
               <div className="align-center flex flex-col items-center justify-center">
-                <button className="flex animate-pulse items-center space-x-2 rounded-lg bg-lime-400 p-1 px-3 py-2 font-bold text-white shadow-md hover:bg-lime-500">
+                <button className="animate-bounce flex animate-pulse items-center space-x-2 rounded-lg bg-lime-400 p-1 px-3 py-2 font-bold text-white shadow-md hover:bg-lime-500">
                   <ExternalLink className="animate-pulse text-white" />
                   {/*href link is from a random value of productsLinks object. */}
                   <Link href={randomProductLink} target="_blank">
-                    Know your product
+                    Discover your product
                   </Link>
                 </button>
                 <div className="p-1">

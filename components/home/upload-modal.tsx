@@ -70,7 +70,7 @@ const UploadModal = ({
           </Link>
           <h3 className="font-display text-2xl font-bold">Upload your photo</h3>
           <p className="text-sm text-gray-500">
-          Your privacy guaranteed: We do not store photos. Your photos will be automatically deleted after 24 hours.
+          Your privacy guaranteed: We do not store photos. Your photos will be automatically deleted after a few hours.
           </p>
         </div>
 

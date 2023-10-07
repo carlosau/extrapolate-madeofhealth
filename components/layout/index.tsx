@@ -28,7 +28,7 @@ export default function Layout({
   return (
     <>
       <Meta {...meta} />
-      <div className="fixed h-screen w-full bg-gradient-to-br from-emerald-100 via-blue-50 to-rose-100" />
+      <div className="fixed h-screen w-full bg-gradient-to-br from-lime-100 via-blue-50 to-green-100" />
       <div
         className={`fixed top-0 w-full pt-2 pb-2 ${
           scrolled
@@ -91,21 +91,22 @@ export default function Layout({
         {children}
       </main>
       <div className="absolute w-full border-t border-gray-200 bg-white py-5 text-center">
-        <p className="text-gray-500">
+      <div className="text-gray-500">
           © {new Date().getFullYear()}{" "}
-          {/*
-          <a
-            href="https://madeofhealth.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            madeofhealth.com
-          </a>
-            */}
             <span>
             madeofhealth.com
             </span>
-        </p>
+        
+            </div>
+           <div className="flex flex-row justify-center text-gray-500 text-sm">
+           <u>
+                <Link href="/cookies-policy">Cookies Policy</Link>
+              </u>
+              <span className="px-2">{" "}|{" "}</span>
+              <u>
+                <Link href="/privacy-notice">Privacy Notice</Link>
+              </u>
+           </div>
       </div>
     </>
   );
