@@ -15,6 +15,7 @@ export default function Home({ count }: { count: number }) {
   const { UploadModal, setShowUploadModal } = useUploadModal();
   console.log('total generated photos:', nFormatter(count))
   return (
+    <>
     <Layout>
       <UploadModal />
       <CookieConsent
@@ -101,6 +102,7 @@ export default function Home({ count }: { count: number }) {
         />
       </motion.div>
     </Layout>
+    </>
   );
 }
 
