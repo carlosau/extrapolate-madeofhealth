@@ -28,7 +28,7 @@ export default function Home({ count }: { count: number }) {
       
         We use cookies to enhance your experience.{" "}
         <span style={{ fontWeight: "bold" }}>
-          We don&apos;t store, use, sell or share user&apos;s photos; they are automatically deleted hours after the upload as described in our Privacy Notice.
+          We don&apos;t store, use, sell or share user&apos;s photos
         </span>{" "}
         By clicking "Accept," you agree to our use of cookies and our{" "}
         <a href="/cookies-policy">Cookies Policy</a> and{" "}

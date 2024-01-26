@@ -16,7 +16,7 @@ export default function Layout({
     description?: string;
     image?: string;
   };
-  children: ReactNode;
+  children?: ReactNode;
 }) {
   const scrolled = useScroll(50);
 

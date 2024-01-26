@@ -1,8 +1,6 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { Analytics } from "@vercel/analytics/react";
 import { Provider as RWBProvider } from "react-wrap-balancer";
-import cx from "classnames";
 import localFont from "next/font/local";
 import { Inter } from "next/font/google";
 
@@ -22,10 +20,7 @@ export default function MyApp({
 }: AppProps) {
   return (
     <RWBProvider>
-      <main className={cx(clash.variable, inter.variable)}>
-        <Component {...pageProps} />
-      </main>
-      <Analytics />
+      <Component {...pageProps} />
     </RWBProvider>
   );
 }
