@@ -16,6 +16,7 @@ import { Toaster } from "react-hot-toast";
 import { useState, useEffect, use } from "react";
 import { LoadingCircle } from "@/components/shared/icons";
 import Link from "next/link";
+import fetch from "node-fetch";
 import { setCookie, parseCookies } from "nookies"; // Import nookies library
 
 export default function PhotoPage({
@@ -262,7 +263,9 @@ export const getStaticProps = async (
   if (data) {
     let imageData: { base64: string } | undefined;
     try {
-      imageData = await getPlaiceholder(input);
+      const response = await fetch(input);
+      const buffer = await response.buffer(); // Convert response body to Buffer
+      imageData = await getPlaiceholder(buffer);
     } catch (error) {
       console.error(error);
     }
